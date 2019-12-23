@@ -5,13 +5,7 @@ SRCDIR = ./Source/
 
 SOURCES = $(SRCDIR)*.cpp
 
-all: adventurist run clean
+all: adventurist
 
 adventurist: 
 	$(CXX) $(SOURCES) -o $@
-
-run:
-	./adventurist
-
-clean:
-	rm adventurist
