@@ -6,12 +6,10 @@
 
 class Event
 {
-	string nameEvent;
-	string descriptionEvent;
+	std::string nameEvent;
+	std::string descriptionEvent;
 	Location location;
-	string typeEvent;
+	std::string typeEvent;
 	Date date;
 	Time time;
-
-	
 };
