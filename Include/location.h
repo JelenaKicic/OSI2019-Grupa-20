@@ -1,3 +1,4 @@
+#include<string>
 class Location {
 private:
 	std::string  city;
