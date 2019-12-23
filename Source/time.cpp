@@ -6,7 +6,7 @@ Time::Time(int hour, int minute)
 	this->minutes = minute;
 }
 
-std::ostream& operator<<(std::ostream& stream, const Time& time)
+std::ostream &operator<<(std::ostream &stream, const Time &time)
 {
 	return stream << time.hours << ':' << time.minutes;
 }

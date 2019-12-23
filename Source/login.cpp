@@ -4,7 +4,6 @@
 #include <bits/stdc++.h>
 #include <conio.h>
 
-
 int login()
 {
 	std::string test1, test2, iName, inPass;
@@ -36,14 +35,18 @@ int login()
 
 	std::cout << "\nLozinka: ";
 	int ch;
-	while ((ch = getch()) != '\r') {
-		if (ch == '\b') {
-			if (inPass.size() > 0) {
+	while ((ch = getch()) != '\r')
+	{
+		if (ch == '\b')
+		{
+			if (inPass.size() > 0)
+			{
 				inPass.erase(inPass.size() - 1, 1);
 				std::cout << "\b \b";
 			}
 		}
-		else {
+		else
+		{
 			inPass.push_back(ch);
 			std::cout.put('*');
 		}
