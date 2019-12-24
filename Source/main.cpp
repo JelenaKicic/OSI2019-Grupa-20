@@ -2,6 +2,6 @@
 
 int main()
 {
-  
+  eventOverviewCriteria();
   return 0;
 }
