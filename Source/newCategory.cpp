@@ -5,6 +5,7 @@
 int new_category()
 {
     std::string unesen, temp, izbor;
+	char c;
 	int i = 0;
     std::ifstream file ("./Database/categories.txt");
     std::cout << "Unesite naziv kategorije koju zelite dodati: ";
