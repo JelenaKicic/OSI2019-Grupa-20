@@ -5,9 +5,16 @@
 int new_category()
 {
     std::string unesen, temp, izbor;
+	int i = 0;
     std::ifstream file ("./Database/categories.txt");
     std::cout << "Unesite naziv kategorije koju zelite dodati: ";
-    std::cin >> unesen;
+	std::cin >> unesen;
+	while (unesen[i])
+	{
+		c = unesen[i];
+		unesen[i] = tolower(c);
+		i++;
+	}
     while (getline(file, temp))
     {
         if (unesen.compare(temp) == 0)
@@ -25,7 +32,7 @@ int new_category()
             if ( izbor == "DA")
             {
                 std::cout << "Sacuvano" << std::endl;
-                file2 << unesen ;
+                file2 << "\n" << unesen ;
                 return 1;
             }
             else if ( izbor == "NE")
