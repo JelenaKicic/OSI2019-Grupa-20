@@ -1,6 +1,7 @@
+#include "../Include/location.h"
+
 #include <iostream>
 #include <string>
-#include "location.h"
 
 Location::Location()
 {
@@ -16,5 +17,15 @@ Location::Location(std::string c, std::string a)
 
 void Location::print_location()
 {
-	cout << city << ", " << adress << endl;
+	std::cout << city << ", " << adress << std::endl;
+}
+
+void Location::setCity(std::string city)
+{
+	this->city = city;
+}
+
+void Location::setAddress(std::string adress)
+{
+	this->adress = adress;
 }
