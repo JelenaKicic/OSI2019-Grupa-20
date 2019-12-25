@@ -3,13 +3,14 @@
 
 class Time
 {
-private:
+  private:
 	int hours;
 	int minutes;
-public:
+
+  public:
+	Time();
 	Time(int, int);
-	friend std::ostream& operator<<(std::ostream&, const Time&);
-
-
+	friend std::ostream &operator<<(std::ostream &, const Time &);
+	void setHours(int);
+	void setMinutes(int);
 };
-

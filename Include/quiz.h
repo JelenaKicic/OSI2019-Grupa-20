@@ -1,17 +1,17 @@
 #pragma once
 class Answer
 {
-	string Answer;
+	std::string Answer;
 	bool corect;
 };
 class QuizQuestion
 {
-	string question;
-	string descripcion;
+	std::string question;
+	std::string descripcion;
 	Answer answers[3];
 };
 class Quiz
 {
-	static string city;
+	static std::string city;
 	QuizQuestion** array;
 };
