@@ -13,7 +13,7 @@ int login()
 	std::ifstream file("./Database/user.txt");
 	std::cout << "\nKorisnicko ime: ";
 	getline(std::cin, iName);
-	while (getline(file, test1))
+	while (getline(file, test1, '|'))
 	{
 		std::string t;
 		std::stringstream X(test1);
@@ -51,7 +51,7 @@ int login()
 			std::cout.put('*');
 		}
 	}
-	getline(file, test2);
+	getline(file, test2, '|');
 	std::string k;
 	std::stringstream Y(test2);
 	getline(Y, k, ' ');
@@ -67,7 +67,7 @@ int login()
 	}
 
 	if (pom1 == 1 && pom2 == 1)
-		return 1;
+		return 0;
 	else
-		return 2;
+		return 1;
 }
