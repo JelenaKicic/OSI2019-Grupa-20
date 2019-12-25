@@ -9,5 +9,6 @@ class Date
     Date();
     Date(int, int, int);
     int getDate();
-    void print_date();
+    void printDate();
+    void setDate(int, int, int);
 };
