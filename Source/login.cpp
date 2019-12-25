@@ -67,7 +67,7 @@ int login()
 	}
 
 	if (pom1 == 1 && pom2 == 1)
-		return 1;
+		return 0;
 	else
-		return 2;
+		return 1;
 }
