@@ -1,4 +1,4 @@
-#include "newCategory.h"
+#include "../Include/newCategory.h"
 #include <iostream>
 #include <fstream>
 
@@ -16,7 +16,7 @@ int new_category()
 			j++;
 		else
 		{
-			cout << "Unijeli ste broj!" << endl;
+			std::cout << "Unijeli ste broj!" << std::endl;
 			return 1;
 		}
 	}
