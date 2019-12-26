@@ -4,15 +4,15 @@
 
 int new_category()
 {
-    std::string unesen, temp, izbor;
+	std::string input, temp, choice;
 	char c;
 	int i = 0, j = 0;
     std::ifstream file ("./Database/categories.txt");
     std::cout << "Unesite naziv kategorije koju zelite dodati: ";
-	std::cin >> unesen;
-	while (unesen[j])
+	getline(std::cin, input);
+	while (input[j])
 	{
-		if ((unesen[j] >= 'a' && unesen[j] <= 'z') || (unesen[j] >= 'A' && unesen[j] <= 'Z'))
+		if ((input[j] >= 'a' && input[j] <= 'z') || (input[j] >= 'A' && input[j] <= 'Z') || (input[j] == ' '))
 			j++;
 		else
 		{
@@ -20,17 +20,17 @@ int new_category()
 			return 1;
 		}
 	}
-	c = unesen[i];
-	unesen[i] = toupper(c);
-	while (unesen[i + 1])
+	c = input[i];
+	input[i] = toupper(c);
+	while (input[i + 1])
 	{
-		c = unesen[i + 1];
-		unesen[i + 1] = tolower(c);
+		c = input[i + 1];
+		input[i + 1] = tolower(c);
 		i++;
 	}
     while (getline(file, temp))
     {
-        if (unesen.compare(temp) == 0)
+        if (input.compare(temp) == 0)
         {
             std::cout << "Unesena kategorija vec postoji!\n";
             return 1;
@@ -41,19 +41,19 @@ int new_category()
     std::cout << "Nova kategorija unesena\n";
     do {
             std::cout << "Sacuvajte izmjene? DA/NE >>> ";
-            std::cin >> izbor;
-            if ( izbor == "DA")
+            std::cin >> choice;
+            if ( choice == "DA")
             {
                 std::cout << "Sacuvano" << std::endl;
-                file2 << "\n" << unesen ;
+				file2 << "\n" << input ;
                 return 0;
             }
-            else if ( izbor == "NE")
+            else if ( choice == "NE")
                 {
                     std::cout << "Nije sacuvano" << std::endl;
                     return 1;
                 }
     }
-    while (izbor != "DA" && izbor != "NE");
-
+    while (choice != "DA" && choice != "NE");
+	return 0;
 }
