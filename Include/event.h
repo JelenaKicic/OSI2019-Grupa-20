@@ -20,6 +20,7 @@ class Event
 	std::string type;
 	Date date;
 	Time time;
+	std::vector<std::string> comments;
 
   public:
 	Event();
@@ -30,6 +31,8 @@ class Event
 	void setLocation(std::string, std::string);
 	void setTime(int, int);
 	void setDate(int, int, int);
+	void setComment(const std::string&);
+	static int getNumberOfEvents(std::ifstream &);
 	friend void geteventsByOrder(int, int, int);
 	friend void checkOverviewCriteria(int, Event **);
 	friend void sortEvents(int , int , Event **);

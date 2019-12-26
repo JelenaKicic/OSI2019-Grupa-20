@@ -3,5 +3,6 @@
 int main()
 {
   eventOverviewCriteria();
+  std::cin.get();
   return 0;
 }
