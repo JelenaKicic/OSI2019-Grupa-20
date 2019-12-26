@@ -9,10 +9,10 @@ int new_category()
 	int i = 0, j = 0;
     std::ifstream file ("./Database/categories.txt");
     std::cout << "Unesite naziv kategorije koju zelite dodati: ";
-	std::cin >> unesen;
+	getline(std::cin, unesen);
 	while (unesen[j])
 	{
-		if ((unesen[j] >= 'a' && unesen[j] <= 'z') || (unesen[j] >= 'A' && unesen[j] <= 'Z'))
+		if ((unesen[j] >= 'a' && unesen[j] <= 'z') || (unesen[j] >= 'A' && unesen[j] <= 'Z') || (unesen[j] == ' '))
 			j++;
 		else
 		{
@@ -55,5 +55,5 @@ int new_category()
                 }
     }
     while (izbor != "DA" && izbor != "NE");
-
+	return 0;
 }
