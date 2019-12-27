@@ -49,3 +49,15 @@ void Date::setDate(int day, int month, int year)
     else 
         std::cout << "Unesite datum u buducnosti." << std::endl;
 }
+int Date::getDay()
+{
+    return day;
+}
+int Date::getMonth()
+{
+    return month;
+}
+int Date::getYear()
+{
+    return year;
+}
