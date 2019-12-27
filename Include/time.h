@@ -13,4 +13,6 @@ class Time
 	friend std::ostream &operator<<(std::ostream &, const Time &);
 	void setHours(int);
 	void setMinutes(int);
+	int getHours();
+	int getMinutes();
 };
