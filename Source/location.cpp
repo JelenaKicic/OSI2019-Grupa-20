@@ -29,3 +29,12 @@ void Location::setAddress(std::string adress)
 {
 	this->adress = adress;
 }
+std::string Location::getCity()
+{
+	return city;
+}
+
+std::string Location::getAddress()
+{
+	return adress;
+}

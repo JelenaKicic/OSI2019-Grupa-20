@@ -12,4 +12,6 @@ public:
 	void print_location();
 	void setCity(std::string);
 	void setAddress(std::string);
+	std::string getCity();
+	std::string getAddress();
 };
