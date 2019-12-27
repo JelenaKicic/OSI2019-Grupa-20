@@ -35,3 +35,12 @@ void Time::setMinutes(int minutes)
 	else
 		this->minutes = 0;
 }
+int Time::getMinutes()
+{
+	return minutes;
+}
+
+int Time::getHours()
+{
+	return hours;
+}

@@ -11,4 +11,7 @@ class Date
     int getDate();
     void printDate();
     void setDate(int, int, int);
+    int getDay();
+    int getMonth();
+    int getYear();
 };
