@@ -1,8 +1,9 @@
-#include "../Include/event.h"
+#include "../Include/menu.h"
 
 int main()
 {
-  eventOverviewCriteria();
+  processMenu(main_menu);
+
   std::cin.get();
   return 0;
 }
