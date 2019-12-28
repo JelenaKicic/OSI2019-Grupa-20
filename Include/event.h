@@ -39,11 +39,14 @@ class Event
 	void printEvent();
 	int writeInFile(Event &);
 	void addEvent();
+   
+	
 
 	friend void geteventsByOrder(int, int);
 	friend int checkOverviewCriteria(int, Event **, Event **, int *);
 	friend void sortEvents(int, Event **, int);
 	friend void sort(Event **, int, int (*cmp)(Event *, Event *));
+	friend void deleteEvent(Event**, int);
 
 	std::string getName();
 	std::string getDescription();
@@ -57,5 +60,6 @@ class Event
 	int getYear();
 };
 // void addEvent();
+
 
 void eventOverviewCriteria();

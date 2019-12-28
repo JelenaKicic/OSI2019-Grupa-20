@@ -184,6 +184,7 @@ void sortEvents(int sortCriteria, Event **events, int num)
         sort(events, num, compareTime);
 }
 
+
 //prikaz dogadjaja po izabranom redu i kriterijumu
 void geteventsByOrder(int overviewCriteria, int sortCriteria)
 {
@@ -208,6 +209,7 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
     } while (eventNumber > 0 || eventNumber < numOfCriteriaEvents);
 
     //ovdje umjesto jednog dogadjaja pozovi samo to za brisanje
+	deleteEvent(allEvents, eventNumber); //brisanje jednog dogadjaja
 
 }
 
@@ -299,8 +301,31 @@ void Event::setDateRead(int day, int month, int year)
     this->date.setDateRead(day, month, year);
 }
 
+void deleteEvent(Event** allEvents, int index)
+{
+	std::ifstream file("../Database/events.txt");
+	int numAllEvents = Event::getNumberOfEvents(file);
+	int size = numAllEvents;
+	if (index < 0 || index >= size)
+		std::cout << "Brisanje nije moguce." << std::endl;
+	else
+	{
+		for (int i = index; i < size - 1; i++)          // brisanje iz niza svih dogadjaja
+			allEvents[i] = allEvents[i + 1];
+		size = size - 1;
+		std::ofstream file("../Database/events.txt", std::ios::trunc);  // brise sadrzaj fila da ne dodje do ponavljanja
+
+		for (int i = 0; i < size; i++)
+		{
+			allEvents[i]->writeInFile(*allEvents[i]); // upisuje na kraj fila 
+		}
+
+	}
+}
+
 void Event::addEvent() //dodavanje dogadjaja
 {
+    std::string line, name, description, adress, line1;
     std::string line, name, description, adress, line1;
     Date *date = new Date;
     Time *time = new Time;
