@@ -165,6 +165,97 @@ void Event::setDate(int day, int month, int year)
     this->date.setDate(day, month, year);
 }
 
+void addEvent() //dodavanje dogadjaja
+{
+	std::string line, name, description, adress, line1;
+	Date* date = new Date;
+	Time* time = new Time;
+	Location* location = new Location;
+	std::string* arrayCities = new std::string[55];
+	std::string* array = new std::string[3];
+	std::string* arrayCategories = new std::string[15];
+	static int i, p;
+	int k, j, day, month, year, m, n;
+	std::cout << "Naziv dogadjaja: " << std::endl;
+	std::getline(std::cin, name);
+	array[0] = name;
+	std::cout << "Opis dogadjaja: " << std::endl;
+	std::getline(std::cin, description);
+	array[1] = description;
+	std::cout << "Izabrati jedan od sledecih ponudjenih gradova: " << std::endl;
+
+	std::ifstream infile("cities.txt");
+	while (std::getline(infile, line))
+	{
+
+		std::cout << i + 1 << line << std::endl;
+		arrayCities[i] = line;
+		i++;
+	}
+	do {
+		std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
+		std::cin >> k;
+	} while (k > i || k < 0);
+	location->setCity(arrayCities[k - 1]);
+
+	infile.close();
+
+	std::cout << "Unesite adresu: " << std::endl;
+	std::cin >> adress;
+	location->setAddress(adress);
+
+	std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
+	std::ifstream infile1("categories.txt");
+	while (std::getline(infile1, line1))
+	{
+		if (line1.size() > 0)
+		{
+			std::cout << p + 1 << line1 << std::endl;
+			arrayCategories[p] = line1;
+			p++;
+		}
+	}
+	infile1.close();
+	do {
+		std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
+		std::cin >> j;
+	} while (j > p || j < 0);
+	array[2] = arrayCategories[j];
+	do {
+		std::cout << "Unesite datum,dan mjesec godina: " << std::endl;
+		std::cin >> day >> month >> year;
+	} while (!date->setDate(day, month, year));
+	do
+	{
+		std::cout << "Unesite vrijeme, sate i minute:" << std::endl;
+		std::cin >> m >> n;
+	} while (!(time->setHours(m) && time->setMinutes(n)));
+
+
+
+
+	Event newEvent = Event(array[0], array[1], location->getCity(), location->getAddress(), array[2], date->getDay(), date->getMonth(), date->getYear(), time->getHours(), time->getHours());
+
+	delete time;
+	delete date;
+	delete location;
+	delete[] array;
+	delete[] arrayCategories;
+	delete[] arrayCities;
+
+	newEvent.writeInFile(newEvent);
+
+
+
+}
+int Event::writeInFile(Event& newEvent) //upis dogadjaja na kraj fajla
+{
+	std::ofstream fileOut("events.txt", std::ios::app);
+	fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "." << "|" << std::endl;
+	fileOut.close();
+	return 1;
+}
+
 void Event::setComment(const std::string &comment)
 {
     this->comments.push_back(comment);
