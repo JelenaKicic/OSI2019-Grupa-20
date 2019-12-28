@@ -69,7 +69,7 @@ int Date::setDate(int day, int month, int year)
     }
 }
 
-void Date::setDate(int day, int month, int year, int read)
+void Date::setDateRead(int day, int month, int year)
 {
 
     this->day = day;
