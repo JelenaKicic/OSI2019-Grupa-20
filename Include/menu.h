@@ -8,8 +8,8 @@ typedef void (*Menu_Processing_Function_Pointer)(void);
 
 struct Menu_Option
 {
-  char choice;
-  char const * p_selection_text;
+  std::string choice;
+  std::string selection_text;
   Menu_Processing_Function_Pointer p_procesing_function;
 };
 
@@ -22,6 +22,6 @@ void mainMenuParseUserSection();
 // Menus
 const std::vector <Menu_Option> main_menu = 
     {
-      {'1', "Prijava na sistem",  mainMenuParseLogin},
-      {'2', "Korisnicki dio", mainMenuParseUserSection},
+      {"1", "Prijava na sistem",  mainMenuParseLogin},
+      {"2", "Korisnicki dio", mainMenuParseUserSection},
     };

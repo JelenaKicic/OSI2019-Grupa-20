@@ -53,6 +53,8 @@ class Event
 	int getDay();
     int getMonth();
     int getYear();
+
 };
+void addEvent();
 
 void eventOverviewCriteria();
