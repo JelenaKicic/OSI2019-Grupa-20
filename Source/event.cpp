@@ -4,18 +4,56 @@
 void checkOverviewCriteria(int overviewCriteria, Event **events)
 {
     std::ifstream file("./Database/events.txt");
-
+    int number_of_events = 0;
     int i = 0;
-    std::string line, name, description, city, address, type, dayStr, monthStr, yearStr, hoursStr, minutesStr;
+    std::string line, name, description, city, address, type, dayStr, monthStr, yearStr, hoursStr, minutesStr, input, comments;
     int day, month, year, hours, minutes;
+
+    number_of_events = Event::getNumberOfEvents(file);
+             
+    events = new Event *[number_of_events];
+    for (int i = 0; i < number_of_events; i++)
+    {
+        events[i] = new Event;
+    }
 
     while (getline(file, line))
     {
         std::stringstream lineStream(line);
 
-        getline(lineStream, name, '|');
-        std::cout << "aaaaaaaaaaaaaaaaaaa" << name;
-        // events[i](name, description, city, address, type, day, month, year, hours, minutes);
+        std::getline(lineStream, name, '|');
+        events[i]->setName(name);
+
+        std::getline(lineStream, description, '|');
+        events[i]->setDescription(description);
+
+        std::getline(lineStream, city, '|');
+        std::getline(lineStream, address, '|');
+        events[i]->setLocation(city, address);
+
+        std::getline(lineStream, type, '|');
+        events[i]->setType(type);
+
+        std::getline(lineStream, hoursStr, ':');
+        std::getline(lineStream, minutesStr, '|');
+        events[i]->setTime(std::stoi(hoursStr), std::stoi(minutesStr));
+
+        std::getline(lineStream, dayStr, '.');
+        std::getline(lineStream, monthStr, '.');
+        std::getline(lineStream, yearStr, '|');
+        events[i]->setDate(std::stoi(dayStr), std::stoi(monthStr), std::stoi(yearStr));
+
+        std::getline(lineStream, comments, '|');
+        std::stringstream commentsStream(comments);
+        int number_of_comments = std::count(comments.begin(), comments.end(), ',') + 1;
+
+        for (int j = 0; j < number_of_comments; j++)
+        {
+            std::string comment;
+            std::getline(commentsStream, comment, ',');
+            events[i]->setComment(comment);
+        }
+        i++;
     }
 }
 
@@ -216,4 +254,20 @@ int Event::writeInFile(Event& newEvent) //upis dogadjaja na kraj fajla
 	fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "." << "|" << std::endl;
 	fileOut.close();
 	return 1;
+}
+
+void Event::setComment(const std::string &comment)
+{
+    this->comments.push_back(comment);
+}
+
+int Event::getNumberOfEvents(std::ifstream &file)
+{
+    int number_of_events = 0;
+
+    number_of_events = (std::count(std::istreambuf_iterator<char>(file), 
+                        std::istreambuf_iterator<char>(), '\n')) + 1;
+    file.seekg(0, std::ios::beg);
+
+    return number_of_events;
 }
