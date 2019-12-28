@@ -15,8 +15,9 @@ public:
   void printDate();
   friend std::ostream &operator<<(std::ostream &, const Date &);
 
-  void setDate(int, int, int);
-  void setDate(int, int, int, int);
+  int setDate(int, int, int);
+  void setDateRead(int, int, int);
+  
   int getDay();
   int getMonth();
   int getYear();
