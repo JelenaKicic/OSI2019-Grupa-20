@@ -33,6 +33,8 @@ class Event
 	friend void geteventsByOrder(int, int, int);
 	friend void checkOverviewCriteria(int, Event **);
 	friend void sortEvents(int , int , Event **);
+	int writeInFile(Event&);
 };
+void addEvent();
 
 void eventOverviewCriteria();
