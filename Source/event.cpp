@@ -20,6 +20,7 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
     }
 
     int k = 0;
+    eventsByCriteria = new Event *[numberOfEvents];
 
     while (getline(file, line))
     {
@@ -46,7 +47,7 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
         std::getline(lineStream, dayStr, '.');
         std::getline(lineStream, monthStr, '.');
         std::getline(lineStream, yearStr, '|');
-        events[i]->setDate(std::stoi(dayStr), std::stoi(monthStr), std::stoi(yearStr));
+        events[i]->setDate(std::stoi(dayStr), std::stoi(monthStr), std::stoi(yearStr), 1);
 
         std::getline(lineStream, comments, '|');
         std::stringstream commentsStream(comments);
@@ -58,7 +59,7 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
             std::getline(commentsStream, comment, ',');
             events[i]->setComment(comment);
         }
-        i++;
+        
 
         if (overviewCriteria == 1)
         {
@@ -71,12 +72,12 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
         }
         if (overviewCriteria == 2)
         {
-            // struct tm *tm = localtime(0);
-            // tm->tm_mday += 1;
-            // time_t next = mktime(tm);
+            struct tm *tm = localtime(0);
+            tm->tm_mday += 1;
+            time_t next = mktime(tm);
             // if (events[i]->getDay() == next.tm_mday && events[i]->getMonth() == 1 + next->tm_mon && events[i]->getYear() == 1900 + next->tm_year)
             // {
-            //     eventsByCriteria[k++] = events[i];
+                eventsByCriteria[k++] = events[i];
             // }
         }
         if (overviewCriteria == 3)
@@ -108,21 +109,30 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
         }
         if (overviewCriteria == 5)
             eventsByCriteria[k++] = events[i];
+        
+        i++;
     }
+
+
+    for (int i = 0; i < k; i++)
+        eventsByCriteria[i]->printEvent();
 
     return k;
 }
 
+//leksikografsko poredjenje naziva dva dogadjaja
 int compareName(Event *event1, Event *event2)
 {
     return event1->getName().compare(event2->getName());
 }
 
+//leksikografsko poredjenje tipova (kategorija) dva dogadjaja
 int compareType(Event *event1, Event *event2)
 {
     return event1->getType().compare(event2->getType());
 }
 
+//poredjenje datuma i vremena dva dogadjaja
 int compareTime(Event *event1, Event *event2)
 {
     time_t now = time(0);
@@ -150,6 +160,8 @@ int compareTime(Event *event1, Event *event2)
         return 1;
 }
 
+
+//sortiranje inplementirano pomocu shell sort algoritma
 void sort(Event **events, int n, int (*cmp)(Event *, Event *))
 {
     int i, j, h;
@@ -165,6 +177,7 @@ void sort(Event **events, int n, int (*cmp)(Event *, Event *))
     }
 }
 
+//odredjivanje atributa po kojem ce se dogadjaji ispisivati
 void sortEvents(int sortCriteria, Event **events, int num)
 {
     if (sortCriteria == 1)
@@ -184,7 +197,7 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
 
     int n = checkOverviewCriteria(overviewCriteria, allEvents, eventsByCriteria);
 
-    sortEvents(sortCriteria, eventsByCriteria, n);
+    // sortEvents(sortCriteria, eventsByCriteria, n);
 
     for (int i = 0; i < n; i++)
         eventsByCriteria[i]->printEvent();
@@ -271,6 +284,11 @@ void Event::setTime(int hours, int minutes)
 void Event::setDate(int day, int month, int year)
 {
     this->date.setDate(day, month, year);
+}
+
+void Event::setDate(int day, int month, int year, int read)
+{
+    this->date.setDate(day, month, year, read);
 }
 
 void Event::setComment(const std::string &comment)

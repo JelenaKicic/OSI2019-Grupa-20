@@ -17,7 +17,7 @@ Date::Date(int day, int month, int year)
 
 std::ostream &operator<<(std::ostream &stream, const Date &date)
 {
-	return stream << date.day << "/" << date.month << "/" << date.year;
+    return stream << date.day << "/" << date.month << "/" << date.year;
 }
 
 // void Date::printDate()
@@ -27,27 +27,38 @@ std::ostream &operator<<(std::ostream &stream, const Date &date)
 
 void Date::setDate(int day, int month, int year)
 {
-    if(year >= 2020 && month <= 12 && month >0){
-        if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
-            if(day >= 31 && day > 0)
+    if (year >= 2020 && month <= 12 && month > 0)
+    {
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+            if (day >= 31 && day > 0)
                 this->day = day;
 
-        else if(month == 4 || month == 6 || month == 9 || month == 11)
-            if(day >= 30 && day > 0)
-                this->day = day;
-        
-        else if(month == 2)
-            if(year % 4 == 0)
-                if(day >= 29 && day > 0)
+            else if (month == 4 || month == 6 || month == 9 || month == 11)
+                if (day >= 30 && day > 0)
                     this->day = day;
-            else
-                if(day >= 28 && day > 0)
-                    this->day = day;
+
+                else if (month == 2)
+                    if (year % 4 == 0)
+                        if (day >= 29 && day > 0)
+                            this->day = day;
+                        else if (day >= 28 && day > 0)
+                            this->day = day;
     }
 
-    else 
+    else
         std::cout << "Unesite datum u buducnosti." << std::endl;
 }
+
+void Date::setDate(int day, int month, int year, int read)
+{
+
+    this->day = day;
+
+    this->month = month;
+
+    this->year = year;
+}
+
 int Date::getDay()
 {
     return day;

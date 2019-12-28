@@ -32,6 +32,7 @@ class Event
 	void setLocation(std::string, std::string);
 	void setTime(int, int);
 	void setDate(int, int, int);
+	void setDate(int, int, int, int);
 	void setComment(const std::string&);
 
 	static int getNumberOfEvents(std::ifstream &);
