@@ -25,18 +25,35 @@ class Event
   public:
 	Event();
 	Event(std::string name, std::string description, std::string city, std::string address, std::string type, int day, int month, int year, int hours, int minutes); 
+	
 	void setName(std::string);
 	void setDescription(std::string);
 	void setType(std::string);
 	void setLocation(std::string, std::string);
 	void setTime(int, int);
 	void setDate(int, int, int);
+	void setDate(int, int, int, int);
 	void setComment(const std::string&);
+
 	static int getNumberOfEvents(std::ifstream &);
-	friend void geteventsByOrder(int, int, int);
-	friend void checkOverviewCriteria(int, Event **);
-	friend void sortEvents(int , int , Event **);
-	int writeInFile(Event&);
+	void printEvent();
+
+	friend void geteventsByOrder(int, int);
+	friend int checkOverviewCriteria(int, Event **, Event **);
+	friend void sortEvents(int , Event **, int);
+	friend void sort (Event **, int, int(*cmp)(Event *, Event *) );
+
+	std::string getName();
+	std::string getDescription();
+	std::string getType();
+	std::string getCity();
+	std::string getAddress();
+	int getHours();
+	int getMinutes();
+	int getDay();
+    int getMonth();
+    int getYear();
+
 };
 void addEvent();
 

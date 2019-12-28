@@ -15,7 +15,7 @@ Location::Location(std::string c, std::string a)
 	adress = a;
 }
 
-void Location::print_location()
+void Location::printLocation()
 {
 	std::cout << city << ", " << adress << std::endl;
 }
