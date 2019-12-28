@@ -1,3 +1,6 @@
+#pragma once
+#include <iostream>
+
 class Date
 {
   private:
@@ -8,10 +11,13 @@ class Date
   public:
     Date();
     Date(int, int, int);
-    int getDate();
+
     void printDate();
+    friend std::ostream &operator<<(std::ostream &, const Date &);
+
     void setDate(int, int, int);
     int getDay();
     int getMonth();
     int getYear();
+
 };

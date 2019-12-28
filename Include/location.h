@@ -9,7 +9,7 @@ private:
 public:
 	Location();
 	Location(std::string, std::string);
-	void print_location();
+	void printLocation();
 	void setCity(std::string);
 	void setAddress(std::string);
 	std::string getCity();

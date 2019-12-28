@@ -22,7 +22,7 @@ void Time::setHours(int hours)
 	if (hours == 24)
 		hours = 0;
 
-	if (hours < 24 && hours <= 0)
+	if (hours < 24 && hours >= 0)
 		this->hours = hours;
 	else
 		this->hours = 0;
@@ -30,7 +30,7 @@ void Time::setHours(int hours)
 
 void Time::setMinutes(int minutes)
 {
-	if (minutes < 60 && minutes <= 0)
+	if (minutes < 60 && minutes >= 0)
 		this->minutes = minutes;
 	else
 		this->minutes = 0;

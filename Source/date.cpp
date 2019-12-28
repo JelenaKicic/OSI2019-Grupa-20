@@ -15,16 +15,15 @@ Date::Date(int day, int month, int year)
     this->year = year;
 }
 
-int Date::getDate()
+std::ostream &operator<<(std::ostream &stream, const Date &date)
 {
-
-    return month, day, year;
+	return stream << date.day << "/" << date.month << "/" << date.year;
 }
 
-void Date::printDate()
-{
-    std::cout << day << "/" << month << "/" << year << std::endl;
-}
+// void Date::printDate()
+// {
+//     std::cout << day << "/" << month << "/" << year << std::endl;
+// }
 
 void Date::setDate(int day, int month, int year)
 {
