@@ -1,4 +1,6 @@
 #include "../Include/event.h"
+#include <iostream>
+#include <fstream>
 
 //pomocna funkcija za ispitivanje izbranog kriterijuma i citanje odgovarajucih dogadjaja
 int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsByCriteria)
