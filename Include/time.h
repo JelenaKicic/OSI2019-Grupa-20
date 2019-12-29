@@ -11,8 +11,10 @@ class Time
 	Time();
 	Time(int, int);
 	friend std::ostream &operator<<(std::ostream &, const Time &);
-	void setHours(int);
-	void setMinutes(int);
+
+	int setHours(int);
+	int setMinutes(int);
+	
 	int getHours();
 	int getMinutes();
 };
