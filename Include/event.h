@@ -36,9 +36,9 @@ class Event
 	void setComment(const std::string &);
 
 	static int getNumberOfEvents(std::ifstream &);
-	void printEvent();
+	void printEventLine();
 	int writeInFile(Event &);
-	void addEvent();
+	// void addEvent();
    
 	
 
@@ -59,7 +59,7 @@ class Event
 	int getMonth();
 	int getYear();
 };
-// void addEvent();
+void addEvent();
 
 
 void eventOverviewCriteria();
