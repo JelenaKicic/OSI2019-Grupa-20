@@ -43,10 +43,10 @@ class Event
 	
 
 	friend void geteventsByOrder(int, int);
-	friend int checkOverviewCriteria(int, Event **, Event **, int *);
-	friend void sortEvents(int, Event **, int);
-	friend void sort(Event **, int, int (*cmp)(Event *, Event *));
-	friend void deleteEvent(Event**, int);
+	 friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
+    friend void sortEvents(int, std::vector<Event>&);
+    friend void sort(std::vector<Event>&, int (*cmp)(Event &, Event &));
+    friend void deleteEvent(std::vector<Event> &, int);
 
 	std::string getName();
 	std::string getDescription();
@@ -61,5 +61,7 @@ class Event
 };
 void addEvent();
 
-
+int compareType(Event &, Event &);
+int compareType(Event &, Event &);
+int compareTime(Event &, Event &);
 void eventOverviewCriteria();
