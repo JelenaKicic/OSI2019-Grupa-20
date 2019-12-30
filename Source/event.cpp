@@ -402,11 +402,11 @@ void addEvent() //dodavanje dogadjaja
     array[1] = description;
     std::cout << "Izabrati jedan od sledecih ponudjenih gradova: " << std::endl;
 
-    std::ifstream infile("../Database/cities.txt");
+    std::ifstream infile("./Database/cities.txt");
     while (std::getline(infile, line))
     {
 
-        std::cout << i + 1 << line << std::endl;
+        std::cout << i + 1 << ". "<<line << std::endl;
         arrayCities[i] = line;
         i++;
     }
@@ -420,17 +420,19 @@ void addEvent() //dodavanje dogadjaja
 
     infile.close();
 
+    std::cin.clear();
+    fflush(stdin);
     std::cout << "Unesite adresu: " << std::endl;
-    std::cin >> adress;
+    std::getline(std::cin, adress);
     location->setAddress(adress);
 
     std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
-    std::ifstream infile1("../Database/categories.txt");
+    std::ifstream infile1("./Database/categories.txt");
     while (std::getline(infile1, line1))
     {
         if (line1.size() > 0)
         {
-            std::cout << p + 1 << line1 << std::endl;
+            std::cout << p + 1 <<". "<< line1 << std::endl;
             arrayCategories[p] = line1;
             p++;
         }
@@ -445,7 +447,7 @@ void addEvent() //dodavanje dogadjaja
     array[2] = arrayCategories[j - 1];
     do
     {
-        std::cout << "Unesite datum,dan mjesec godina: " << std::endl;
+        std::cout << "Unesite datum, dan mjesec godina: " << std::endl;
         std::cin >> day >> month >> year;
     } while (!date->setDate(day, month, year));
     do
@@ -468,9 +470,9 @@ void addEvent() //dodavanje dogadjaja
 
 int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
 {
-    std::ofstream fileOut("events.txt", std::ios::app);
+    std::ofstream fileOut("./Database/events.txt", std::ios::app);
     fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "."
-            << "|" << std::endl;
+            << "|" <<"| |"<< std::endl;
     fileOut.close();
     return 1;
 }
