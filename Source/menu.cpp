@@ -41,6 +41,12 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
     }
 }
 
+void clearInputBuffer()
+{
+    std::cin.clear();
+    fflush(stdin);
+}
+
 // Functions for parsing main menu
 void mainMenuParseLogin()
 {
@@ -69,14 +75,16 @@ void adminMenuParseAddCategory()
     processMenu(admin_menu);
 }
 
+
+void adminMenuParseAddEvent()
+{
+    addEvent();
+    processMenu(admin_menu);
+}
+
+// Functions mutal for both admin and client menus
 void menuParseEventOverview()
 {
     eventOverviewCriteria();
     processMenu(admin_menu);
-}
-
-void clearInputBuffer()
-{
-    std::cin.clear();
-    fflush(stdin);
 }
