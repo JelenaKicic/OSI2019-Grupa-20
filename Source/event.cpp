@@ -14,7 +14,7 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
         int p = 0, j;
  
         std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
-        std::ifstream infile1("../Database/categories.txt");
+        std::ifstream infile1("./Database/categories.txt");
  
         while (std::getline(infile1, line))
         {
@@ -39,7 +39,7 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
     // std::cout << "category: " << category << std::endl;
 
 
-    std::ifstream file("../Database/events.txt");
+    std::ifstream file("./Database/events.txt");
 
     int i = 0;
 
