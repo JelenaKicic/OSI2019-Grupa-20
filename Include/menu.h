@@ -24,6 +24,7 @@ void mainMenuParseClientSection();
 
 // Functions for parsing admin menu
 void adminMenuParseAddCategory();
+void adminMenuParseAddEvent();
 
 // Functions mutal for both admin and client menus
 void menuParseEventOverview();
@@ -38,7 +39,8 @@ const std::vector <Menu_Option> main_menu =
 const std::vector <Menu_Option> admin_menu =
     {
       {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
-      {"2", "Pregeld dogadjaja", menuParseEventOverview},
+      {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
+      {"3", "Pregeld dogadjaja", menuParseEventOverview},
     };
 
 const std::vector <Menu_Option> client_menu =
