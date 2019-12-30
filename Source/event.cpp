@@ -3,53 +3,77 @@
 #include <fstream>
 
 //pomocna funkcija za ispitivanje izbranog kriterijuma i citanje odgovarajucih dogadjaja
-int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsByCriteria, int *numAllEvenets)
+void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std::vector<Event> &eventsByCriteria)
 {
+    std::string category;
+    std::vector<std::string> categories;
+ 
+    if (overviewCriteria == 3)
+    {
+        std::string line;
+        int p = 0, j;
+ 
+        std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
+        std::ifstream infile1("../Database/categories.txt");
+ 
+        while (std::getline(infile1, line))
+        {
+            if (line.size() > 0)
+            {
+                std::cout << p + 1 << ". " << line << std::endl;
+                categories.push_back(line);
+                p++;
+            }
+        }
+ 
+        infile1.close();
+        do
+        {
+            std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
+            std::cin >> j;
+        } while (j > p || j < 0);
+ 
+        category = categories[j-1];
+    }
+ 
+    // std::cout << "category: " << category << std::endl;
+
+
     std::ifstream file("../Database/events.txt");
 
-    *numAllEvenets = 0;
     int i = 0;
 
     std::string line, name, description, city, address, type, dayStr, monthStr, yearStr, hoursStr, minutesStr, input, comments;
     int day, month, year, hours, minutes;
 
-    *numAllEvenets = Event::getNumberOfEvents(file);
 
-    events = new Event *[*numAllEvenets];
-    for (int i = 0; i < *numAllEvenets; i++)
-    {
-        events[i] = new Event;
-    }
-
-    int k = 0;
-    eventsByCriteria = new Event *[*numAllEvenets];
 
     while (getline(file, line))
     {
-
+        Event event;
         std::stringstream lineStream(line);
 
         std::getline(lineStream, name, '|');
-        events[i]->setName(name);
+        event.setName(name);
 
         std::getline(lineStream, description, '|');
-        events[i]->setDescription(description);
+        event.setDescription(description);
 
         std::getline(lineStream, city, '|');
         std::getline(lineStream, address, '|');
-        events[i]->setLocation(city, address);
+        event.setLocation(city, address);
 
         std::getline(lineStream, type, '|');
-        events[i]->setType(type);
+        event.setType(type);
 
         std::getline(lineStream, hoursStr, ':');
         std::getline(lineStream, minutesStr, '|');
-        events[i]->setTime(std::stoi(hoursStr), std::stoi(minutesStr));
+        event.setTime(std::stoi(hoursStr), std::stoi(minutesStr));
 
         std::getline(lineStream, dayStr, '.');
         std::getline(lineStream, monthStr, '.');
         std::getline(lineStream, yearStr, '|');
-        events[i]->setDateRead(std::stoi(dayStr), std::stoi(monthStr), std::stoi(yearStr));
+        event.setDateRead(std::stoi(dayStr), std::stoi(monthStr), std::stoi(yearStr));
 
         std::getline(lineStream, comments, '|');
         std::stringstream commentsStream(comments);
@@ -59,33 +83,50 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
         {
             std::string comment;
             std::getline(commentsStream, comment, ',');
-            events[i]->setComment(comment);
+            event.setComment(comment);
         }
+        events.push_back(event);
 
         if (overviewCriteria == 1)
         {
             time_t now = time(0);
             tm *ltm = localtime(&now);
-            if (events[i]->getDay() == ltm->tm_mday && events[i]->getMonth() == 1 + ltm->tm_mon && events[i]->getYear() == 1900 + ltm->tm_year)
+            if (event.getDay() == ltm->tm_mday && event.getMonth() == 1 + ltm->tm_mon && event.getYear() == 1900 + ltm->tm_year)
             {
-                eventsByCriteria[k++] = events[i];
+                eventsByCriteria.push_back(event);
             }
         }
         if (overviewCriteria == 2)
         {
-            struct tm *tm = localtime(0);
-            tm->tm_mday += 1;
-            time_t next = mktime(tm);
-            // if (events[i]->getDay() == next.tm_mday && events[i]->getMonth() == 1 + next->tm_mon && events[i]->getYear() == 1900 + next->tm_year)
-            // {
-            eventsByCriteria[k++] = events[i];
-            // }
+            time_t now = time(0);
+            tm *ltm = localtime(&now);
+            if (event.getYear() < 1900 + ltm->tm_year)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() > 1 + ltm->tm_mon)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() == 1 + ltm->tm_mon && event.getDay() > ltm->tm_mday)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() == 1 + ltm->tm_mon && event.getDay() == ltm->tm_mday && event.getHours() > 1 + ltm->tm_hour)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() == 1 + ltm->tm_mon && event.getDay() == ltm->tm_mday && event.getHours() == 1 + ltm->tm_hour && event.getMinutes() > 1 + ltm->tm_min)
+            {
+                eventsByCriteria.push_back(event);
+            }
         }
         if (overviewCriteria == 3)
         {
-            if (events[i]->getType().compare("Koncert") == 0)
+
+            if (event.getType() == category)
             {
-                eventsByCriteria[k++] = events[i];
+                eventsByCriteria.push_back(event);
             }
         }
         if (overviewCriteria == 4)
@@ -93,155 +134,167 @@ int checkOverviewCriteria(int overviewCriteria, Event **events, Event **eventsBy
             time_t now = time(0);
             tm *ltm = localtime(&now);
 
-            if (events[i]->getYear() < 1900 + ltm->tm_year)
-                eventsByCriteria[k++] = events[i];
-
-            else if (events[i]->getYear() == 1900 + ltm->tm_year && events[i]->getMonth() < 1 + ltm->tm_mon)
-                eventsByCriteria[k++] = events[i];
-
-            else if (events[i]->getYear() == 1900 + ltm->tm_year && events[i]->getMonth() == 1 + ltm->tm_mon && events[i]->getDay() < ltm->tm_mday)
-                eventsByCriteria[k++] = events[i];
-
-            else if (events[i]->getYear() == 1900 + ltm->tm_year && events[i]->getMonth() == 1 + ltm->tm_mon && events[i]->getDay() == ltm->tm_mday && events[i]->getHours() < 1 + ltm->tm_hour)
-                eventsByCriteria[k++] = events[i];
-
-            else if (events[i]->getYear() == 1900 + ltm->tm_year && events[i]->getMonth() == 1 + ltm->tm_mon && events[i]->getDay() == ltm->tm_mday && events[i]->getHours() == 1 + ltm->tm_hour && events[i]->getMinutes() < 1 + ltm->tm_min)
-                eventsByCriteria[k++] = events[i];
+            if (event.getYear() < 1900 + ltm->tm_year)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() < 1 + ltm->tm_mon)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() == 1 + ltm->tm_mon && event.getDay() < ltm->tm_mday)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() == 1 + ltm->tm_mon && event.getDay() == ltm->tm_mday && event.getHours() < 1 + ltm->tm_hour)
+            {
+                eventsByCriteria.push_back(event);
+            }
+            else if (event.getYear() == 1900 + ltm->tm_year && event.getMonth() == 1 + ltm->tm_mon && event.getDay() == ltm->tm_mday && event.getHours() == 1 + ltm->tm_hour && event.getMinutes() < 1 + ltm->tm_min)
+            {
+                eventsByCriteria.push_back(event);
+            }
         }
         if (overviewCriteria == 5)
-            eventsByCriteria[k++] = events[i];
-
-        i++;
+        {
+            eventsByCriteria.push_back(event);
+        }
     }
 
-    return k;
 }
 
 //leksikografsko poredjenje naziva dva dogadjaja
-int compareName(Event *event1, Event *event2)
+int compareName(Event &event1, Event &event2)
 {
-    return event1->getName().compare(event2->getName());
+    return event1.getName().compare(event2.getName());
 }
 
 //leksikografsko poredjenje tipova (kategorija) dva dogadjaja
-int compareType(Event *event1, Event *event2)
+int compareType(Event &event1, Event &event2)
 {
-    return event1->getType().compare(event2->getType());
+    return event1.getType().compare(event2.getType());
 }
 
 //poredjenje datuma i vremena dva dogadjaja
-int compareTime(Event *event1, Event *event2)
+int compareTime(Event &event1, Event &event2)
 {
     time_t now = time(0);
     tm *ltm = localtime(&now);
-
-    if (event1->getYear() < event2->getYear())
+ 
+    if (event1.getYear() < event2.getYear())
         return -1;
-
-    else if (event1->getYear() == event2->getYear() && event1->getMonth() < event2->getMonth())
+ 
+    else if (event1.getYear() == event2.getYear() && event1.getMonth() < event2.getMonth())
         return -1;
-
-    else if (event1->getYear() == event2->getYear() && event1->getMonth() == event2->getMonth() && event1->getDay() < event2->getDay())
+ 
+    else if (event1.getYear() == event2.getYear() && event1.getMonth() == event2.getMonth() && event1.getDay() < event2.getDay())
         return -1;
-
-    else if (event1->getYear() == event2->getYear() && event1->getMonth() == event2->getMonth() && event1->getDay() == event2->getDay() && event1->getHours() < event2->getHours())
+ 
+    else if (event1.getYear() == event2.getYear() && event1.getMonth() == event2.getMonth() && event1.getDay() == event2.getDay() && event1.getHours() < event2.getHours())
         return -1;
-
-    else if (event1->getYear() == event2->getYear() && event1->getMonth() == event2->getMonth() && event1->getDay() == event2->getDay() && event1->getHours() < event2->getHours() && event1->getMinutes() < event2->getMinutes())
+ 
+    else if (event1.getYear() == event2.getYear() && event1.getMonth() == event2.getMonth() && event1.getDay() == event2.getDay() && event1.getHours() < event2.getHours() && event1.getMinutes() < event2.getMinutes())
         return -1;
-
-    else if (event1->getYear() == event2->getYear() && event1->getMonth() == event2->getMonth() && event1->getDay() == event2->getDay() && event1->getHours() < event2->getHours() && event1->getMinutes() == event2->getMinutes())
+ 
+    else if (event1.getYear() == event2.getYear() && event1.getMonth() == event2.getMonth() && event1.getDay() == event2.getDay() && event1.getHours() < event2.getHours() && event1.getMinutes() == event2.getMinutes())
         return 0;
-
+ 
     else
         return 1;
 }
 
 //sortiranje inplementirano pomocu shell sort algoritma
-void sort(Event **events, int n, int (*cmp)(Event *, Event *))
+void sort(std::vector<Event> &events, int (*cmp)(Event &, Event &))
 {
-    int i, j, h;
+    int i, j, h, n;
+    n = events.size();
+ 
     for (h = n / 2; h > 0; h /= 2)
     {
         for (i = h; i < n; i++)
         {
-            Event *x = events[i];
+            Event &x = events[i];
             for (j = i; j >= h && (*cmp)(x, events[j - h]) < 0; j -= h)
                 events[j] = events[j - h];
             events[j] = x;
         }
     }
 }
-
+ 
 //odredjivanje atributa po kojem ce se dogadjaji ispisivati
-void sortEvents(int sortCriteria, Event **events, int num)
+void sortEvents(int sortCriteria, std::vector<Event> &events)
 {
     if (sortCriteria == 1)
-        sort(events, num, compareName);
-
+        sort(events, compareName);
+ 
     if (sortCriteria == 2)
-        sort(events, num, compareType);
-
+        sort(events, compareType);
+ 
     if (sortCriteria == 3)
-        sort(events, num, compareTime);
+        sort(events, compareTime);
 }
-
-
+ 
+ 
 //prikaz dogadjaja po izabranom redu i kriterijumu
 void geteventsByOrder(int overviewCriteria, int sortCriteria)
 {
-    Event **allEvents, **eventsByCriteria;
+    std::vector<Event> allEvents, eventsByCriteria;
+ 
     int numAllEvenets;
-
-    int numOfCriteriaEvents = checkOverviewCriteria(overviewCriteria, allEvents, eventsByCriteria, &numAllEvenets);
-
-    sortEvents(sortCriteria, eventsByCriteria, numOfCriteriaEvents);
-
-    for (int i = 0; i < numOfCriteriaEvents; i++)
+ 
+    checkOverviewCriteria(overviewCriteria, allEvents, eventsByCriteria);
+    sortEvents(sortCriteria, eventsByCriteria);
+ 
+    for (int i = 0; i < eventsByCriteria.size(); i++)
     {
         std::cout << i + 1 << ".";
-        eventsByCriteria[i]->printEvent();
+        eventsByCriteria[i].printEventLine();
     }
-
+ 
     int eventNumber;
     std::cout << "Za pregled jednog dogadjaja unesite broj dogadjaja" << std::endl;
     do
     {
         std::cin >> eventNumber;
-    } while (eventNumber > 0 || eventNumber < numOfCriteriaEvents);
-
+    } while (eventNumber > 0 || eventNumber < eventsByCriteria.size());
+ 
     //ovdje umjesto jednog dogadjaja pozovi samo to za brisanje
-	deleteEvent(allEvents, eventNumber); //brisanje jednog dogadjaja
-
+    deleteEvent(allEvents, eventNumber); //brisanje jednog dogadjaja
+ 
 }
 
 //izbor kriterijuma pretrage i nacina na koji ce dogadjaji biti sortirani
 void eventOverviewCriteria()
 {
     int overviewCriteria = 0, sortCriteria = 0;
-    std::cout << "Izaberite kritrijum pregleda dogadjaja:" << std::endl
-              << "1. Pregled danasnjih dogadjaja" << std::endl
-              << "2. Pregled svih buducih dogadjaja" << std::endl
-              << "3. Pregled dogadjaja odredjene kategorije" << std::endl
-              << "4. Pregled dogadjaja koji su prosli"
-              << "5. Pregled svih dogadjaja" << std::endl;
-
-    do
-    {
-        std::cout << "Unesi broj:" << std::endl;
-        std::cin >> overviewCriteria;
-    } while (overviewCriteria < 1 || overviewCriteria > 5);
 
     std::cout << "Sortiraj dogadjaje po:" << std::endl
               << "1. Nazivu" << std::endl
               << "2. Vrsti dogadjaja (kategorija)" << std::endl
-              << "3. Datumu i vremenu odrzavanja" << std::endl;
+              << "3. Datumu i vremenu odrzavanja" << std::endl
+              << std::endl;
 
     do
     {
         std::cout << "Unesi broj:" << std::endl;
         std::cin >> sortCriteria;
+        std::cout << std::endl;
     } while (sortCriteria < 1 || sortCriteria > 3);
+
+    std::cout << "Izaberite kritrijum pregleda dogadjaja:" << std::endl
+              << "1. Pregled danasnjih dogadjaja" << std::endl
+              << "2. Pregled svih buducih dogadjaja" << std::endl
+              << "3. Pregled dogadjaja odredjene kategorije" << std::endl
+              << "4. Pregled dogadjaja koji su prosli" << std::endl
+              << "5. Pregled svih dogadjaja" << std::endl
+              << std::endl;
+
+    do
+    {
+        std::cout << "Unesi broj:" << std::endl;
+        std::cin >> overviewCriteria;
+        std::cout << std::endl;
+    } while (overviewCriteria < 1 || overviewCriteria > 5);
 
     geteventsByOrder(overviewCriteria, sortCriteria);
 }
@@ -303,31 +356,30 @@ void Event::setDateRead(int day, int month, int year)
     this->date.setDateRead(day, month, year);
 }
 
-void deleteEvent(Event** allEvents, int index)
+void deleteEvent(std::vector<Event> &allEvents, int index)
 {
-	std::ifstream file("../Database/events.txt");
-	int numAllEvents = Event::getNumberOfEvents(file);
-	int size = numAllEvents;
-	if (index < 0 || index >= size)
-		std::cout << "Brisanje nije moguce." << std::endl;
-	else
-	{
-		for (int i = index; i < size - 1; i++)          // brisanje iz niza svih dogadjaja
-			allEvents[i] = allEvents[i + 1];
-		size = size - 1;
-		std::ofstream file("../Database/events.txt", std::ios::trunc);  // brise sadrzaj fila da ne dodje do ponavljanja
-
-		for (int i = 0; i < size; i++)
-		{
-			allEvents[i]->writeInFile(*allEvents[i]); // upisuje na kraj fila 
-		}
-
-	}
+    std::ifstream file("../Database/events.txt");
+    int size = allEvents.size();
+ 
+    if (index < 0 || index >= size)
+        std::cout << "Brisanje nije moguce." << std::endl;
+    else
+    {
+        for (int i = index; i < size - 1; i++)          // brisanje iz niza svih dogadjaja
+            allEvents[i] = allEvents[i + 1];
+        size = size - 1;
+        std::ofstream file("../Database/events.txt", std::ios::trunc);  // brise sadrzaj fila da ne dodje do ponavljanja
+ 
+        for (int i = 0; i < size; i++)
+        {
+            allEvents[i].writeInFile(allEvents[i]); // upisuje na kraj fila
+        }
+ 
+    }
 }
 
-void Event::addEvent() //dodavanje dogadjaja
+void addEvent() //dodavanje dogadjaja
 {
-    std::string line, name, description, adress, line1;
     std::string line, name, description, adress, line1;
     Date *date = new Date;
     Time *time = new Time;
@@ -335,7 +387,7 @@ void Event::addEvent() //dodavanje dogadjaja
     Location *location = new Location;
     std::string *arrayCities = new std::string[55];
     std::string *array = new std::string[3];
-    std::string *arrayCategories = new std::string[15];
+    std::string *arrayCategories = new std::string[200];
 
     static int i, p;
     int k, j, day, month, year, m, n;
@@ -350,7 +402,7 @@ void Event::addEvent() //dodavanje dogadjaja
     array[1] = description;
     std::cout << "Izabrati jedan od sledecih ponudjenih gradova: " << std::endl;
 
-    std::ifstream infile("cities.txt");
+    std::ifstream infile("../Database/cities.txt");
     while (std::getline(infile, line))
     {
 
@@ -358,6 +410,7 @@ void Event::addEvent() //dodavanje dogadjaja
         arrayCities[i] = line;
         i++;
     }
+
     do
     {
         std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
@@ -372,7 +425,7 @@ void Event::addEvent() //dodavanje dogadjaja
     location->setAddress(adress);
 
     std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
-    std::ifstream infile1("categories.txt");
+    std::ifstream infile1("../Database/categories.txt");
     while (std::getline(infile1, line1))
     {
         if (line1.size() > 0)
@@ -382,13 +435,14 @@ void Event::addEvent() //dodavanje dogadjaja
             p++;
         }
     }
+
     infile1.close();
     do
     {
         std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
         std::cin >> j;
     } while (j > p || j < 0);
-    array[2] = arrayCategories[j];
+    array[2] = arrayCategories[j - 1];
     do
     {
         std::cout << "Unesite datum,dan mjesec godina: " << std::endl;
@@ -431,8 +485,8 @@ int Event::getNumberOfEvents(std::ifstream &file)
     int numAllEvenets = 0;
 
     numAllEvenets = (std::count(std::istreambuf_iterator<char>(file),
-                                 std::istreambuf_iterator<char>(), '\n')) +
-                     1;
+                                std::istreambuf_iterator<char>(), '\n')) +
+                    1;
     file.seekg(0, std::ios::beg);
 
     return numAllEvenets;
@@ -488,7 +542,7 @@ int Event::getYear()
     return this->date.getYear();
 }
 
-void Event::printEvent()
+void Event::printEventLine()
 {
-    std::cout << this->getName() << " " << this->time << " " << this->date << " " << std::endl;
+    std::cout << this->getName() << " " << this->time << " " << this->date << " " << this->getType() << std::endl;
 }
