@@ -31,6 +31,7 @@ int Time::setHours(int hours)
 {
 
 	if (hours < 24 && hours >= 0)
+
 	{
 		this->hours = hours;
 		return 1;
@@ -50,7 +51,9 @@ int Time::setHours(int hours)
 int Time::setMinutes(int minutes)
 {
 	if (minutes < 60 && minutes >= 0)
+
 	{
+
 		this->minutes = minutes;
 		return 1;
 	}

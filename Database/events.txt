@@ -1,6 +1,6 @@
-Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|aaaaaaaaaaaaaaaaaaaaa,koment11|
-Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|aaaaaaaaaaaaaaaaaaaaa,comment 22,kjdfhdkhf|
-Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|aaaaaaaaaaaaaaaaaaaaa,comment 33|
+Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|29.12.2019.|aaaaaaaaaaaaaaaaaaaaa,koment11|
+Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|3.2.2020.|aaaaaaaaaaaaaaaaaaaaa,comment 22,kjdfhdkhf|
+Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|29.12.2019.|aaaaaaaaaaaaaaaaaaaaa,comment 33|
 Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|aaaaaaaaaaaaaaaaaaaaa,coment 44|
 Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|aaaaaaaaaaaaaaaaaaaaa,comment 55|
 Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|aaaaaaaaaaaaaaaaaaaaa,comment66|

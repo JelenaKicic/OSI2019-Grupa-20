@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../Include/login.h"
+#include "../Include/newCategory.h"
+#include "../Include/event.h"
 #include <iostream>
 #include <vector>
 
@@ -13,15 +15,33 @@ struct Menu_Option
   Menu_Processing_Function_Pointer p_procesing_function;
 };
 
+void clearInputBuffer();
 void processMenu(const std::vector <Menu_Option> &);
 
 // Functions for parsing main menu
 void mainMenuParseLogin();
-void mainMenuParseUserSection();
+void mainMenuParseClientSection();
+
+// Functions for parsing admin menu
+void adminMenuParseAddCategory();
+
+// Functions mutal for both admin and client menus
+void menuParseEventOverview();
 
 // Menus
 const std::vector <Menu_Option> main_menu = 
     {
       {"1", "Prijava na sistem",  mainMenuParseLogin},
-      {"2", "Korisnicki dio", mainMenuParseUserSection},
+      {"2", "Korisnicki dio", mainMenuParseClientSection},
+    };
+
+const std::vector <Menu_Option> admin_menu =
+    {
+      {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
+      {"2", "Pregeld dogadjaja", menuParseEventOverview},
+    };
+
+const std::vector <Menu_Option> client_menu =
+    {
+      {"1", "Pregled dogadjaja", menuParseEventOverview},
     };

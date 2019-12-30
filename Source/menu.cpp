@@ -2,6 +2,8 @@
 
 void processMenu(const std::vector <Menu_Option> &menu_option)
 {
+    clearInputBuffer();
+
     int menu_length;
     int invalid_choice = 0;
 
@@ -26,8 +28,7 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
         {
             invalid_choice = 1;
             Menu_Processing_Function_Pointer p_function = menu_option[i].p_procesing_function;
-            std::cin.clear();
-            fflush(stdin);
+            clearInputBuffer();
             (p_function)();
             break;
         }
@@ -46,6 +47,7 @@ void mainMenuParseLogin()
     if (!login())
     {
         std::cout << "\n\nDashboard" << std::endl;
+        processMenu(admin_menu);
     }
     else
     {
@@ -54,7 +56,27 @@ void mainMenuParseLogin()
     }
 }
 
-void mainMenuParseUserSection()
+void mainMenuParseClientSection()
 {
     std::cout << "\nAdventursit" << std::endl;
+    processMenu(client_menu);
+}
+
+// Functions for parsing admin menu
+void adminMenuParseAddCategory()
+{
+    new_category();
+    processMenu(admin_menu);
+}
+
+void menuParseEventOverview()
+{
+    eventOverviewCriteria();
+    processMenu(admin_menu);
+}
+
+void clearInputBuffer()
+{
+    std::cin.clear();
+    fflush(stdin);
 }

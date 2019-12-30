@@ -15,19 +15,20 @@ Date::Date(int day, int month, int year)
     this->year = year;
 }
 
-int Date::getDate()
+std::ostream &operator<<(std::ostream &stream, const Date &date)
 {
-
-    return month, day, year;
+    return stream << date.day << "/" << date.month << "/" << date.year;
 }
 
-void Date::printDate()
-{
-    std::cout << day << "/" << month << "/" << year << std::endl;
-}
+// void Date::printDate()
+// {
+//     std::cout << day << "/" << month << "/" << year << std::endl;
+// }
 
 int Date::setDate(int day, int month, int year)
 {
+ if (day >= 31 && day > 0)
+
     if (year >= 2020 && month <= 12 && month > 0) {
         this->month = month;
         this->year = year;
@@ -37,7 +38,6 @@ int Date::setDate(int day, int month, int year)
                 this->day = day;
                 return 1;
             }
-
 
 
             else if (month == 4 || month == 6 || month == 9 || month == 11)
@@ -68,6 +68,17 @@ int Date::setDate(int day, int month, int year)
         return 0;
     }
 }
+
+void Date::setDateRead(int day, int month, int year)
+{
+
+    this->day = day;
+
+    this->month = month;
+
+    this->year = year;
+}
+
 int Date::getDay()
 {
     return day;
