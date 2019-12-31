@@ -1,4 +1,4 @@
-#include "../Include/quiz.h"
+#include "./Include/quiz.h"
 
 void startQuiz()
 {
@@ -24,20 +24,20 @@ void startQuiz()
         quiz[cityNum - 1].answerQuestion(i);
     }
 
-    int correct;
+    int correct = 0;
     for (int i = 0; i < 10; i++)
     {
         quiz[cityNum - 1].printAll(i, correct);
-
-        if (correct == 0)
-            std::cout << "Niste odgovorili tacno ni na jedno pitanje.";
-
-        else if (correct == 1)
-            std::cout << "Odgovorili ste tacno na jedno pitanje.";
-
-        else
-            std::cout << "Odgovorili ste tacno na " << correct << " pitanja.";
     }
+
+    if (correct == 0)
+        std::cout << "Niste odgovorili tacno ni na jedno pitanje.";
+
+    else if (correct == 1)
+        std::cout << "Odgovorili ste tacno na jedno pitanje.";
+
+    else
+        std::cout << "Odgovorili ste tacno na " << correct << " pitanja od " << 10 << ".";
 }
 
 //funkzija za konverziju stringa povucenog iz datoteke u bool tip
@@ -49,7 +49,7 @@ bool convertToBool(std::string str)
 void readQuizData(std::vector<Quiz> &quiz)
 {
     //datoteka
-    std::ifstream file("./Database/events.txt");
+    std::ifstream file("./Database/quiz.txt");
 
     int i = 0;
 
@@ -83,17 +83,18 @@ void readQuizData(std::vector<Quiz> &quiz)
                 std::getline(lineStream1, correctStr, '|');
                 correct = convertToBool(correctStr);
 
-                q.array[j].setAnswer(question, correct, k);
+                q.array[j].setAnswer(answer, correct, k);
             }
 
             getline(file, line);
             std::stringstream lineStream2(line);
 
             std::getline(lineStream2, description, '|');
-            q.array[j].setQuestion(description);
+            q.array[j].setDescription(description);
         }
 
         quiz.push_back(q);
+        getline(file, line);
     }
 }
 
@@ -101,7 +102,7 @@ void readQuizData(std::vector<Quiz> &quiz)
 void Quiz::printQuestion(int index)
 {
     std::cout << array[index].getQuestion() << std::endl;
-    std::cout << "[1]" << array[index].getAnswer(0) << "[2]" << array[index].getAnswer(1) << "[3]" << array[index].getAnswer(2) << std::endl;
+    std::cout << "[1] " << array[index].getAnswer(0) << "  [2] " << array[index].getAnswer(1) << "  [3]" << array[index].getAnswer(2) << std::endl;
 }
 
 // krajnji ispis tacnih odgovora i zanimljivosti
@@ -110,8 +111,11 @@ void Quiz::printAll(int index, int &correct)
     std::cout << array[index].getQuestion() << std::endl;
     std::cout << "Tacan odgovor je: ";
     array[index].printCorrect();
-    std::cout << array[index].getDescription() << std::endl;
-    std::cout << "Odgovorili ste" << array[index].getAnswered() ? " tacno." : "netacno.";
+    std::cout << "Odgovorili ste" << (array[index].getAnswered() ? " tacno." : " netacno.") << std::endl
+              << std::endl;
+    std::cout << array[index].getDescription() << std::endl
+              << std::endl
+              << std::endl;
 
     if (array[index].getAnswered())
         correct++;
