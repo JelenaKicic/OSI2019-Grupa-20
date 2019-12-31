@@ -40,6 +40,7 @@ void startQuiz()
     }
 }
 
+//funkzija za konverziju stringa povucenog iz datoteke u bool tip
 bool convertToBool(std::string str)
 {
     return str == "true";
@@ -47,6 +48,7 @@ bool convertToBool(std::string str)
 
 void readQuizData(std::vector<Quiz> &quiz)
 {
+    //datoteka
     std::ifstream file("./Database/events.txt");
 
     int i = 0;
@@ -58,6 +60,7 @@ void readQuizData(std::vector<Quiz> &quiz)
     {
         Quiz q;
         getline(file, line);
+        //parsiranje stringa
         std::stringstream lineStream(line);
 
         std::getline(lineStream, city, '|');
@@ -94,12 +97,14 @@ void readQuizData(std::vector<Quiz> &quiz)
     }
 }
 
+//ispisivanje jednog pitanja i ponudjenih odgovora, prilikom postavljanja pitanja
 void Quiz::printQuestion(int index)
 {
     std::cout << array[index].getQuestion() << std::endl;
     std::cout << "[1]" << array[index].getAnswer(0) << "[2]" << array[index].getAnswer(1) << "[3]" << array[index].getAnswer(2) << std::endl;
 }
 
+// krajnji ispis tacnih odgovora i zanimljivosti
 void Quiz::printAll(int index, int &correct)
 {
     std::cout << array[index].getQuestion() << std::endl;
@@ -112,6 +117,7 @@ void Quiz::printAll(int index, int &correct)
         correct++;
 }
 
+// odgovor na pitanje i ispitivanje tacnosti odgovora
 void Quiz::answerQuestion(int index)
 {
     int answer;
@@ -122,6 +128,7 @@ void Quiz::answerQuestion(int index)
     array[index].setAnswered(array[index].getCorrect(answer));
 }
 
+//ispis tacnog odgovora, pri ispisu kviza
 void QuizQuestion::printCorrect()
 {
     for (int i = 0; i < 3; i++)
