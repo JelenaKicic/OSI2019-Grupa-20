@@ -51,10 +51,10 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
     while (getline(file, line))
     {
         Event event;
-        std::stringstream lineStream(line);
+            std::stringstream lineStream(line);
 
-        std::getline(lineStream, name, '|');
-        event.setName(name);
+            std::getline(lineStream, name, '|');
+            event.setName(name);
 
         std::getline(lineStream, description, '|');
         event.setDescription(description);

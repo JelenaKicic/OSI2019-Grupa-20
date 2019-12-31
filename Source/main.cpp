@@ -1,10 +1,11 @@
-#include "../Include/menu.h"
+// #include "../Include/menu.h"
+#include "../Include/quiz.h"
 
 
 int main()
 {
-   
-  processMenu(main_menu);
+   startQuiz();
+  // processMenu(main_menu);
   std::cin.get();
 
   return 0;
