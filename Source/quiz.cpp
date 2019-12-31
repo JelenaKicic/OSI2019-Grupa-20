@@ -1,4 +1,4 @@
-#include "./Include/quiz.h"
+#include "../Include/quiz.h"
 
 void startQuiz()
 {
