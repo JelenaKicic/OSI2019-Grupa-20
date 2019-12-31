@@ -259,7 +259,7 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
     } while (eventNumber > 0 || eventNumber < eventsByCriteria.size());
  
     //ovdje umjesto jednog dogadjaja pozovi samo to za brisanje
-    deleteEvent(allEvents, eventNumber); //brisanje jednog dogadjaja
+    deleteEvent(allEvents,eventsByCriteria, eventNumber); //brisanje jednog dogadjaja
  
 }
 
@@ -356,26 +356,49 @@ void Event::setDateRead(int day, int month, int year)
     this->date.setDateRead(day, month, year);
 }
 
-void deleteEvent(std::vector<Event> &allEvents, int index)
+int search(std::vector<Event>& first, std::vector<Event>& second, int index) //trazi element iz second u first vraca indeks nadjenog 
 {
-    std::ifstream file("../Database/events.txt");
-    int size = allEvents.size();
- 
-    if (index < 0 || index >= size)
-        std::cout << "Brisanje nije moguce." << std::endl;
-    else
-    {
-        for (int i = index; i < size - 1; i++)          // brisanje iz niza svih dogadjaja
-            allEvents[i] = allEvents[i + 1];
-        size = size - 1;
-        std::ofstream file("../Database/events.txt", std::ios::trunc);  // brise sadrzaj fila da ne dodje do ponavljanja
- 
-        for (int i = 0; i < size; i++)
-        {
-            allEvents[i].writeInFile(allEvents[i]); // upisuje na kraj fila
-        }
- 
-    }
+	while (index >= second.size());
+	{
+		std::string tmp = second[index].getName();
+		for (int i = 0; i < first.size(); i++)
+		{
+			if (tmp == first[i].getName())
+				return i;
+
+		}
+	}
+	return -1;
+}
+
+void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCriteria, int index)
+{
+	std::ifstream file("../Database/events.txt");
+	int i;
+	int size = allEvents.size();
+	
+	if (index < 0 || index >= size)
+		std::cout << "Brisanje nije moguce." << std::endl;
+	else
+	{
+		int indexAllEvents = search(allEvents, eventsByCriteria, index);
+		if (indexAllEvents != -1)
+		{
+			eventsByCriteria.erase(eventsByCriteria.begin() + index);
+			allEvents.erase(allEvents.begin() + indexAllEvents);
+
+			std::ofstream file("../Database/events.txt", std::ios::trunc);  // brise sadrzaj fajla da ne dodje do ponavljanja
+
+			for (i = 0; i < allEvents.size(); i++)
+			{
+				allEvents[i].writeInFile(allEvents[i]); // upisuje na kraj fajla
+
+			}
+
+		}
+
+
+	}
 }
 
 void addEvent() //dodavanje dogadjaja
