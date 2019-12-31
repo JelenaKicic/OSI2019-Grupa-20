@@ -82,9 +82,17 @@ void adminMenuParseAddEvent()
     processMenu(admin_menu);
 }
 
-// Functions mutal for both admin and client menus
+// Functions for parsing client menu
+void clientMenuParseQuiz()
+{
+    startQuiz();
+    processMenu(client_menu);
+}
+
+// Functions mutal for parsin both admin and client menus
 void menuParseEventOverview()
 {
     eventOverviewCriteria();
+    std::cout << "\n";
     processMenu(admin_menu);
 }
