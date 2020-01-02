@@ -41,7 +41,7 @@ Koje godine je osnovana Narodna bibloteka "Filip Višnjić"?|
 1932.godine,true|1924.godine,false|1940.godine,false|
 Biblioteka predstavlja matičnu biblioteku regije i nadležna je za rad školskih, fakultetskih i narodnih biblioteka na području ove regije.|
 Na glavnom trgu u Bijeljini se nalazi spomenik kojem srpskom kralju?|
-Aleksandru Obrenoviću,false|Petru I Karađorđeviću,false|Stefanu Prvovjenčanom,false|
+Aleksandru Obrenoviću,false|Petru I Karađorđeviću,true|Stefanu Prvovjenčanom,false|
 Autor originalnog spomenika je hrvatski vajar Rudolf Valdec.|
 Bijeljina se može pohvaliti najvećim etno kompleksom u Republici Srpskoj i šire, a to je?|
 Etno selo Stanišići,true|Etno selo Oaza,false|Etno selo Ljubačke doline,false|
