@@ -1,9 +1,9 @@
 #pragma once
 
-#include "./Include/login.h"
-#include "./Include/newCategory.h"
-#include "./Include/event.h"
-#include "./Include/quiz.h"
+#include "./login.h"
+#include "./newCategory.h"
+#include "./event.h"
+#include "./quiz.h"
 #include <iostream>
 #include <vector>
 
