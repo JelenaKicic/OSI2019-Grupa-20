@@ -11,7 +11,7 @@ else
     endif
 endif
 
-CXXFLAGS = -static
+CXXFLAGS = -static -Wall -pedantic
 IDIR = ./Include/
 SRCDIR = ./Source/
  

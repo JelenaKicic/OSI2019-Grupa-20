@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <bits/stdc++.h>
+#include <vector>
 // #include <conio.h>
 
 class Event
@@ -38,6 +39,7 @@ class Event
 	static int getNumberOfEvents(std::ifstream &);
 	void printEventLine();
 	int writeInFile(Event &);
+	int search(std::vector<Event>&, std::vector<Event>&, int);
 	// void addEvent();
    
 	
@@ -46,7 +48,7 @@ class Event
 	 friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
     friend void sortEvents(int, std::vector<Event>&);
     friend void sort(std::vector<Event>&, int (*cmp)(Event &, Event &));
-    friend void deleteEvent(std::vector<Event> &, int);
+    friend void deleteEvent(std::vector<Event> &, std::vector<Event>&, int);
 
 	std::string getName();
 	std::string getDescription();
