@@ -1,4 +1,4 @@
-#include "../Include/event.h"
+#include "./Include/event.h"
 #include <iostream>
 #include <fstream>
 
@@ -373,7 +373,7 @@ int search(std::vector<Event>& first, std::vector<Event>& second, int index) //t
 
 void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCriteria, int index)
 {
-	std::ifstream file("../Database/events.txt");
+	std::ifstream file("./Database/events.txt");
 	int i;
 	int size = allEvents.size();
 	
@@ -387,7 +387,7 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCrit
 			eventsByCriteria.erase(eventsByCriteria.begin() + index);
 			allEvents.erase(allEvents.begin() + indexAllEvents);
 
-			std::ofstream file("../Database/events.txt", std::ios::trunc);  // brise sadrzaj fajla da ne dodje do ponavljanja
+			std::ofstream file("./Database/events.txt", std::ios::trunc);  // brise sadrzaj fajla da ne dodje do ponavljanja
 
 			for (i = 0; i < allEvents.size(); i++)
 			{
