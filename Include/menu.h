@@ -20,6 +20,7 @@ struct Menu_Option
 
 void clearInputBuffer();
 void processMenu(const std::vector <Menu_Option> &);
+std::string intToString(int);
 
 // Functions for parsing main menu
 void mainMenuParseLogin();
