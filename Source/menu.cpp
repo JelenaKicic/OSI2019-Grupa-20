@@ -108,6 +108,13 @@ void adminMenuParseAddEvent()
     processMenu(admin_menu);
 }
 
+void adminMenuParseEventOverview()
+{
+    eventOverviewCriteria();
+    std::cout << "\n";
+    processMenu(admin_menu);
+}
+
 // Functions for parsing client menu
 void clientMenuParseQuiz()
 {
@@ -115,10 +122,9 @@ void clientMenuParseQuiz()
     processMenu(client_menu);
 }
 
-// Functions mutal for parsin both admin and client menus
-void menuParseEventOverview()
+void clientMenuParseEventOverview()
 {
     eventOverviewCriteria();
     std::cout << "\n";
-    processMenu(admin_menu);
+    processMenu(client_menu);
 }
