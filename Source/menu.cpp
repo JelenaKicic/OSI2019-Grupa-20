@@ -37,7 +37,7 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
             (p_function)();
             break;
         }
-        else if (choice == std::to_string(menu_length + 1))
+        else if (choice == intToString(menu_length + 1))
         {
             processMenu(*previous_menu);
         }
@@ -63,6 +63,14 @@ bool Menu_Option::operator==(const Menu_Option &other) const
     return ((this->choice == other.choice) && 
             (this->selection_text == other.selection_text) && 
             (this->p_procesing_function == other.p_procesing_function));
+}
+
+std::string intToString(int n)
+{
+    std::stringstream stream;
+    stream << n;
+
+    return stream.str();
 }
 
 // Functions for parsing main menu
