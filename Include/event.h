@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include <bits/stdc++.h>
+#include <vector>
 // #include <conio.h>
 
 class Event
@@ -24,24 +25,30 @@ class Event
 
   public:
 	Event();
-	Event(std::string name, std::string description, std::string city, std::string address, std::string type, int day, int month, int year, int hours, int minutes); 
-	
+	Event(std::string name, std::string description, std::string city, std::string address, std::string type, int day, int month, int year, int hours, int minutes);
+
 	void setName(std::string);
 	void setDescription(std::string);
 	void setType(std::string);
 	void setLocation(std::string, std::string);
 	void setTime(int, int);
 	void setDate(int, int, int);
-	void setDate(int, int, int, int);
-	void setComment(const std::string&);
+	void setDateRead(int, int, int);
+	void setComment(const std::string &);
 
 	static int getNumberOfEvents(std::ifstream &);
-	void printEvent();
+	void printEventLine();
+	int writeInFile(Event &);
+	int search(std::vector<Event>&, std::vector<Event>&, int);
+	// void addEvent();
+   
+	
 
 	friend void geteventsByOrder(int, int);
-	friend int checkOverviewCriteria(int, Event **, Event **);
-	friend void sortEvents(int , Event **, int);
-	friend void sort (Event **, int, int(*cmp)(Event *, Event *) );
+	 friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
+    friend void sortEvents(int, std::vector<Event>&);
+    friend void sort(std::vector<Event>&, int (*cmp)(Event &, Event &));
+    friend void deleteEvent(std::vector<Event> &, std::vector<Event>&, int);
 
 	std::string getName();
 	std::string getDescription();
@@ -51,10 +58,12 @@ class Event
 	int getHours();
 	int getMinutes();
 	int getDay();
-    int getMonth();
-    int getYear();
-
+	int getMonth();
+	int getYear();
 };
 void addEvent();
 
+int compareType(Event &, Event &);
+int compareType(Event &, Event &);
+int compareTime(Event &, Event &);
 void eventOverviewCriteria();
