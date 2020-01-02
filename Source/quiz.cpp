@@ -102,7 +102,7 @@ void readQuizData(std::vector<Quiz> &quiz)
 void Quiz::printQuestion(int index)
 {
     std::cout << array[index].getQuestion() << std::endl;
-    std::cout << "[1] " << array[index].getAnswer(0) << "  [2] " << array[index].getAnswer(1) << "  [3]" << array[index].getAnswer(2) << std::endl;
+    std::cout << "[1] " << array[index].getAnswer(0) << "  [2] " << array[index].getAnswer(1) << "  [3] " << array[index].getAnswer(2) << std::endl;
 }
 
 // krajnji ispis tacnih odgovora i zanimljivosti
