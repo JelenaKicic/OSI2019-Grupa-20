@@ -14,6 +14,8 @@ struct Menu_Option
   std::string choice;
   std::string selection_text;
   Menu_Processing_Function_Pointer p_procesing_function;
+
+  bool operator==(const Menu_Option &other) const;
 };
 
 void clearInputBuffer();
