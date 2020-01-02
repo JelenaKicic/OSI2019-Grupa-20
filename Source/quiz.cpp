@@ -127,7 +127,7 @@ void Quiz::answerQuestion(int index)
     std::cin >> answer;
     std::cout << std::endl;
 
-    array[index].setAnswered(array[index].getCorrect(answer));
+    array[index].setAnswered(array[index].getCorrect(answer - 1));
 }
 
 //ispis tacnog odgovora, pri ispisu kviza
