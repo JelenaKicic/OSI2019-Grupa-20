@@ -51,8 +51,6 @@ void readQuizData(std::vector<Quiz> &quiz)
     //datoteka
     std::ifstream file("./Database/quiz.txt");
 
-    int i = 0;
-
     std::string line, city, question, answer, correctStr, description;
     bool correct;
 
