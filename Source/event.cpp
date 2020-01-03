@@ -374,7 +374,6 @@ int search(std::vector<Event>& first, std::vector<Event>& second, int index) //t
 
 void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCriteria, int index)
 {
-	
 	std::ofstream file("./Database/events.txt");
 	int i;
 	

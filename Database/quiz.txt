@@ -12,7 +12,7 @@ Koje godine se desio zemljotres koji je razorio grad?|
 1969.,true|1963.,false|1966.,false|
 U tom zemljotresu je poginulo 15 Banjalučana, a 1117 ljudi su bili teže i lakše povrijeđeni.|
 Podsjetnik na dan kada je Banjaluka "stala" je Krivi sat koji pokazuje koje vrijeme?|
-19:11,false|21:11,false|9:11,true
+19:11,false|21:11,false|9:11,true|
 U pitanju je spomen sat koji je prestao raditi kada je Banja Luku pogodio razorni zemljotres 27. oktobra 1969. godine. Sat je prestao da radi tačno u 9:11h.|
 Kako se zove robna kuća koja je jedan od glavnih simbola grada?|
 Boska,true|Sloga,false|Centar,false|
