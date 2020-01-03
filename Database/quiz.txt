@@ -1,63 +1,127 @@
-City: Banjaluka
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
+Banjaluka|
+Koji dan se proslavlja kao dan grada?|
+22.januar,false|22.novembar,false|22.april,true|
+Dan oslobođenja grada u Drugom svjetskom ratu je 22.april 1945.godine.|
+Kroz Banjaluku protiče rijeka:|
+Sava,false|Vrbas,true|Una,false|
+Na obalama Vrbasa se pored Banjaluke nalaze i Jajce, Gornji Vakuf, Bugojno i Donji Vakuf.|
+U kojem je vijeku nastala tvrđava Kastel?|
+XII,false|XVI,true|XIV,false|
+Tvrđava Kastel predstavlja najstariji gradski istorijski spomenik.|
+Koje godine se desio zemljotres koji je razorio grad?|
+1969.,true|1963.,false|1966.,false|
+U tom zemljotresu je poginulo 15 Banjalučana, a 1117 ljudi su bili teže i lakše povrijeđeni.|
+Podsjetnik na dan kada je Banjaluka "stala" je Krivi sat koji pokazuje koje vrijeme?|
+19:11,false|21:11,false|9:11,true|
+U pitanju je spomen sat koji je prestao raditi kada je Banja Luku pogodio razorni zemljotres 27. oktobra 1969. godine. Sat je prestao da radi tačno u 9:11h.|
+Kako se zove robna kuća koja je jedan od glavnih simbola grada?|
+Boska,true|Sloga,false|Centar,false|
+Pored Krivog sata gradskim trgom dominira RK Boska koja je otvorena 1978. i koja je predstavljala jedan od najpoznatijih objekata toga tipa u Jugoslaviji.| 
+Banjalučki "hram" sporta je dvorana čiji je naziv:|
+Spens,false|Mejdan,false|Borik,true|
+Sportska dvorana Borik je dom rukometnog kluba Borac, jedinog kluba u gradu sa titulom prvaka Evrope.|
+Hrana po kojoj je poznata Banjaluka je:|
+pljeskavica,false|ćevap,true|kobasica,false|
+Banjalučki ćevap se smatra najslavnijim brendom grada koji se pojavio prije više od 100 godina.|
+Koje godine je nastala Banjalučka pivara?|
+1873.,true|1889.,false|1881.,false|
+Vrijednim radom monaha Trapista nastala je Banjalučka pivara, a njen osnivač je Franc Pfaner.|
+Pivo koje se proizvodi u Banjalučkoj pivari je:|
+Lav,false|Preminger,false|Nektar,true|
+Nektar pivo je najprodavanije pivo u Bosni i Hercegovini sa prodajom od 48,3 miliona litara.|
 
-City: Bijeljina
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
-Question:Pitanje...
-Answers: [1]Odgovor... Correct: true/false [2]Odgovor... Correct: true/false [3]Odgovor... Correct: true/false
-Description: Desc...
+Bijeljina|
+Na kojoj nadmorskoj visini se nalazi Bijeljina?|
+120m,false|60m,false|90m,true|
+Bijeljina je nakon Banjaluke drugi grad po veličini u Republici Srpskoj, a peti u BiH.|
+Poznati narodni pjesnik koji je rođen u Bijeljini je:|
+Lukijan Mušicki,false|Filip Višnjić,true|Laza Lazarević,false|
+U osmoj godini Filip Višnjić je preležao boginje koje su mu ostavile ožiljke na licu i oduzele vid.|
+Koje godine je osnovana Narodna bibloteka "Filip Višnjić"?|
+1932.godine,true|1924.godine,false|1940.godine,false|
+Biblioteka predstavlja matičnu biblioteku regije i nadležna je za rad školskih, fakultetskih i narodnih biblioteka na području ove regije.|
+Na glavnom trgu u Bijeljini se nalazi spomenik kojem srpskom kralju?|
+Aleksandru Obrenoviću,false|Petru I Karađorđeviću,true|Stefanu Prvovjenčanom,false|
+Autor originalnog spomenika je hrvatski vajar Rudolf Valdec.|
+Bijeljina se može pohvaliti najvećim etno kompleksom u Republici Srpskoj i šire, a to je?|
+Etno selo Stanišići,true|Etno selo Oaza,false|Etno selo Ljubačke doline,false|
+U srcu ove cjeline je manastir Svetog oca Nikole, replika manastira Kumanice, zadužbine Nemanjića.|
+U gradu se nalazi Muzej Semberije koji je osnovan:|
+1980.godine,false|1960.godine,false|1970.godine,true|
+Muzej sadrži tri stalne postavke, arheološku, etnološku i istorijsku, sa preko 10000 eksponata.|
+Koje godine je završena gradnja Atik džamije?|
+1520.,false|1582.,false|1566.,true|
+Džamija je izgrađena na temeljima srpske pravoslavne crkve koju su Turci srušili za vrijeme sultana Sulejmana Veličanstvenog.|
+Prvi sportski klub osnovan u Bijeljini nosio je naziv:|
+Podrinje,true|Semberija,false|Radnički,false|
+Ovaj klub je osnovan davne 1919. godine.|
+Koji fudbalski klub iz Bijeljine je bio osvajač kupa BiH?|
+Sloga,false|Proleter,false|Radnik,true|
+Nakon osvajanja kupa BiH 2016-te godine Radnik bilježi svoj prvi evropski nastup, što predstavlja najveći uspjeh kluba od osnivanja.|
+Jedan od najznačajnijih srpskih pozorišnih reditelja rođen u Bijeljini je:|
+Jovica Pavić,false|Dejan Mijač,true|Radivoje Andrić,false|
+Tokom svoje bogate karijere bio je reditelj Srpskog narodnog pozorišta u Novom Sadu i Narodnog pozorišta u Tuzli.|
+
+Trebinje|
+Ime grada potiče od:|
+turske riječi,false|germanske riječi,false|slovenske riječi,true|
+Ime grada potiče od slovenske riječi TREB, što znači žrtva(žrtvovati).|
+Reljefom dominira koja planina?|
+Zelengora,false|Leotar,true|Maglić,false|
+Mnogi sportski klubovi iz Trebinja nose ime ove planine.|
+Rijeka ponornica koja protiče kroz Trebinje je:|
+Trebižat,false|Trebišnjica,true|Neretva,false|
+Prije izgradnja hidrocentrala na njoj, Trebišnjica je važila za najdužu rijeku ponornicu u Evropi.|
+U Trebinju se nalazi vjerna kopija jednog manastira sa Kosova, a taj manastir je?|
+Hercegovačka Gračanica,true|Tvrdoš,false|Petropavlov,false|
+Manastir se može vidjeti sa svake tačke u Trebinju i to je najljepša sakralna građevina u cijeloj Istočnoj Hercegovini.|
+Perovića most na Trebišnjici je izgradio koji veliki vezir Turskog carstva?|
+Rustem-paša,false|Ibrahim-paša,false|Mehmed-paša,true|
+Perovića most(nekada Arslanagića most) je zadužbina Mehmed-paše Sokolovića koju je u izgradio u čast svoga poginulog sina, a most se nalazi na spisku nepokretnih kulturnih dobara Republike Srpske.|
+Poznati srpski pjesnik koji je rođen u Trebinju je:|
+Aleksa Šantić,false|Milan Rakić,false|Jovan Dučić,true|
+U njegovu čast u gradu se svake godine održavaju Dučićeve večeri poezije.|
+Koje godine je osnovan Muzej Hercegovine?|
+1952.,true|1958.,false|1948.,false|
+Muzej sadrži pet stalnih postavki, arheološku, antičku, etnografsku, Zbirku Jovana Dučića i zbirku slika akademskih slikara.|
+Narodna biblioteka Trebinje je osnovana:|
+1931.godine,false|1921.godine,true|1941.godine,false|
+Fond biblioteke iznosi preko 70000 hiljada bibliotečkog materijala, a biblioteka posjeduje veoma značajan legat Jovana Dučića.|
+Trebinje ima i svoju endemsku biljku, a to je:|
+Zanovet,true|Knapov karanfil,false|Prijatna kandilka,false|
+Cvjetovi zanoveti su raskošnog mirisa i posebno su značajni u pčelarstvu, jer med od zanoveti je jedan od najtraženijih.|
+Košarkaška legenda koja svake godine organizuje kamp za djecu u Trebinju je:|
+Aleksandar Đorđević,false|Vlade Divac,false|Dejan Bodiroga,true|
+Korijeni Bodiroge upravo potiču iz Trebinja, čiji su se roditelji odselili tokom kolonizacije poslije Drugog svjetskog rata.|
+
+Prijedor
+Koji dan se proslavlja kao dan grada?|
+16.jul,false|16.februar,false|16.maj,true|
+Oslobođenje grada u Drugom svjetskom ratu desilo se 16.maja 1945.godine.|
+Prijedor sa sjevera ograničava koja planina?|
+Manjača,false|Kozara,true|Vitorog,false|
+Kozara se pored Prijedora proteže još i na području Novog Grada, Kostajnice, Kozarske Dubice, Gradiške, Banjaluke i Laktaša.|
+Najviša tačka grada je na visini od:|
+856m,false|978m,true|784m,false|
+Najviša tačka grada je ujedno i najviši vrh planine Kozare.|
+Prvo lovačko društvo na teritoriji Prijedora je osnovano:|
+1906.godine,true|1912.godine,false|1908.godine,false|
+Prirodne ljepote Kozare i njeni raznoliki predjeli su česta odredišta mnogih planinarskih i lovačkih društava iz okolnih gradova.|
+Kada je osnovan nacionalni park Kozara, jedan od tri nacionalna parka u BiH?|
+6.aprila 1958.,false|25.maja 1967.,false|6.aprila 1967.,true|
+Zadatak nacionalnog parka je da štiti i čuva prirodu, osigura njen nesmetan razvoj u cilju očuvanja biljnog i životinjskog svijeta.|
+Rijeka koja protiče kroz Prijedor je:|
+Sava,false|Una,false|Sana,true|
+Prosječni protok rijeke Sane cijelim njenim tokom od izvora do ušća je 68,7 kubnih metara u sekundi.|
+Jedini državni fakultet koji se nalazi u Prijedoru je:|
+Rudarski,true|Saobraćajni,false|Filozofski,false|
+Nastava na prvom ciklusu studija izvodi se na studijskom programu Rudarstvo, a na drugom ciklusu studija na studijskom programu Rudarsko i geološko inženjerstvo.|
+Koje godine je osnovan najuspješniji fudbalski klub u Prijedoru?|
+1935.,false|1928.,true|1940.,false|
+Najveći uspjeh Fudbalskog kluba Rudar je šampionska titula Republike Srpske u dva navrata.|
+Koji sportski klub u Prijedoru nosi naziv po fabrici keksa Mira?|
+Ženski rukometni klub,true|Ženski košarkaški klub,false|Odbojkaški klub,false|
+Najveći uspjeh ŽRK Mira je ostvarila osvajanjem Premijer lige BiH 2014.godine.|
+Naziv sportske dvorane u Prijedoru je?|
+Sloga,false|Kozara,false|Mladost,true|
+Dvorana je više puta fazno renovirana tako da je njeno stanje zadovoljavajuće i može zadovoljiti kriterijume za veća takmičenja.|
