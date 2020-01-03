@@ -3,9 +3,10 @@
 #include <fstream>
 #include <bits/stdc++.h>
 #include <conio.h>
-
+bool isAdministrator = false;
 int login()
 {
+	
 	std::string test1, test2, iName, inPass;
 	std::string defName = "Username:";
 	std::string defPass = "Password:";
@@ -67,7 +68,15 @@ int login()
 	}
 
 	if (pom1 == 1 && pom2 == 1)
+
+	{
+		isAdministrator = true;
 		return 0;
+	}
+		
+		
+	
+		
 	else
 		return 1;
 }
