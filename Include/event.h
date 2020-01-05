@@ -3,6 +3,7 @@
 #include "./date.h"
 #include "./location.h"
 #include "./time.h"
+#include "./login.h"
 
 #include <string>
 #include <iostream>
@@ -10,6 +11,8 @@
 #include <sstream>
 #include <bits/stdc++.h>
 #include <vector>
+#include<iomanip>
+// #include <conio.h>
 
 class Event
 {
@@ -48,6 +51,8 @@ class Event
     friend void sortEvents(int, std::vector<Event>&);
     friend void sort(std::vector<Event>&, int (*cmp)(Event &, Event &));
     friend void deleteEvent(std::vector<Event> &, std::vector<Event>&, int);
+	friend void printEvent(std::vector<Event>&, std::vector<Event>&, int);
+
 
 	std::string getName();
 	std::string getDescription();

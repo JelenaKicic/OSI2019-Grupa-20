@@ -256,10 +256,11 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
     do
     {
         std::cin >> eventNumber;
-    } while (eventNumber > 0 || eventNumber < eventsByCriteria.size());
+    } while (eventNumber <= 0 || eventNumber > eventsByCriteria.size());
  
     //ovdje umjesto jednog dogadjaja pozovi samo to za brisanje
-    deleteEvent(allEvents,eventsByCriteria, eventNumber); //brisanje jednog dogadjaja
+	printEvent(allEvents, eventsByCriteria, eventNumber-1);
+	
  
 }
 
@@ -373,11 +374,10 @@ int search(std::vector<Event>& first, std::vector<Event>& second, int index) //t
 
 void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCriteria, int index)
 {
-	std::ifstream file("./Database/events.txt");
+	std::ofstream file("./Database/events.txt");
 	int i;
-	int size = allEvents.size();
 	
-	if (index < 0 || index >= size)
+	if (index < 0 || index >= eventsByCriteria.size())
 		std::cout << "Brisanje nije moguce." << std::endl;
 	else
 	{
@@ -387,19 +387,79 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCrit
 			eventsByCriteria.erase(eventsByCriteria.begin() + index);
 			allEvents.erase(allEvents.begin() + indexAllEvents);
 
-			std::ofstream file("./Database/events.txt", std::ios::trunc);  // brise sadrzaj fajla da ne dodje do ponavljanja
+			file.open("./Database/events.txt",std::ifstream::out | std::ifstream::trunc);  // brise sadrzaj fajla da ne dodje do ponavljanja
 
 			for (i = 0; i < allEvents.size(); i++)
 			{
 				allEvents[i].writeInFile(allEvents[i]); // upisuje na kraj fajla
 
 			}
+			file.close();
+			
 
 		}
 
 
 	}
 }
+
+void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCriteria, int index)
+{
+	if (index < 0 || index >= eventsByCriteria.size())
+		std::cout << "Prikazivanje dogadjaja nije moguce." << std::endl;
+	else
+	{
+		int indexAllEvents = search(allEvents, eventsByCriteria, index);
+		if (indexAllEvents != -1)
+		{
+			std::cout << std::endl;
+			std::cout << "  Naziv:      " << allEvents[indexAllEvents].getName() << std::endl;
+			std::cout << "  Opis:       " << allEvents[indexAllEvents].getDescription() << std::endl;  
+			std::cout << "  Grad:       " << allEvents[indexAllEvents].getCity() << std::endl;
+			std::cout << "  Adresa:     " << allEvents[indexAllEvents].getAddress() << std::endl; 
+			std::cout << "  Tip:        " << allEvents[indexAllEvents].getType() << std::endl;
+			std::cout << "  Dan:        " << allEvents[indexAllEvents].getDay() << std::endl;
+			std::cout << "  Mjesec:     " << allEvents[indexAllEvents].getMonth() << std::endl;
+			std::cout << "  Godina:     " << allEvents[indexAllEvents].getYear() << std::endl;
+			std::cout << "  Sat:        " << allEvents[indexAllEvents].getHours() << std::endl;
+			std::cout << "  Minut:      " << allEvents[indexAllEvents].getMinutes() << std::endl;
+			std::cout << "  Komentari:  " << std::endl;
+			for (int i = 0; i < eventsByCriteria[indexAllEvents].comments.size(); i++)
+			{
+				std::cout <<"             "<< eventsByCriteria[indexAllEvents].comments[i] << std::endl;
+			}
+			
+			//komentari ispis
+		}
+	}
+	if (isAdministrator == true)
+	{
+		int select;
+		std::cout << std::endl << std::endl << "Administratorske opcije sa dogadjajem:" << std::endl
+			<< "1. Dodavanje dogadjaja" << std::endl
+			<< "2. Izmjena dogadjaja" << std::endl
+			<< "3. Brisanje dogadjaja" << std::endl
+			<< std::endl;
+
+		do
+		{
+			std::cout << "Unesi broj:" << std::endl;
+			std::cin >> select ;
+			std::cout << std::endl;
+		} while (select < 1 || select > 3);
+
+		if (select == 1) addEvent();
+		
+		//	if (select == 2)  poziv izmjene dogadjaja
+			
+		if (select == 3) deleteEvent(allEvents, eventsByCriteria, index);
+	}
+	
+
+	
+}
+
+
 
 void addEvent() //dodavanje dogadjaja
 {
@@ -571,3 +631,4 @@ void Event::printEventLine()
 {
     std::cout << this->getName() << " " << this->time << " " << this->date << " " << this->getType() << std::endl;
 }
+

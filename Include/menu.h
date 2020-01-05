@@ -1,9 +1,9 @@
 #pragma once
 
-#include "./login.h"
-#include "./newCategory.h"
-#include "./event.h"
-#include "./quiz.h"
+#include "../Include/login.h"
+#include "../Include/newCategory.h"
+#include "../Include/event.h"
+#include "../Include/quiz.h"
 #include <iostream>
 #include <vector>
 
@@ -29,12 +29,12 @@ void mainMenuParseClientSection();
 // Functions for parsing admin menu
 void adminMenuParseAddCategory();
 void adminMenuParseAddEvent();
+void adminMenuParseEventOverview();
 
 // Functions for parsking client menu
 void clientMenuParseQuiz();
+void clientMenuParseEventOverview();
 
-// Functions mutal for both admin and client menus
-void menuParseEventOverview();
 
 // Menus
 const std::vector <Menu_Option> main_menu = 
@@ -47,11 +47,11 @@ const std::vector <Menu_Option> admin_menu =
     {
       {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
       {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
-      {"3", "Pregeld dogadjaja", menuParseEventOverview},
+      {"3", "Pregeld dogadjaja", adminMenuParseEventOverview},
     };
 
 const std::vector <Menu_Option> client_menu =
     {
-      {"1", "Pregled dogadjaja", menuParseEventOverview},
+      {"1", "Pregled dogadjaja", clientMenuParseEventOverview},
       {"2", "Kviz", clientMenuParseQuiz},
     };
