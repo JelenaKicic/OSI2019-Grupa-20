@@ -402,6 +402,13 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCrit
 
 	}
 }
+int stringToInt(std::string s) 
+{
+    std::stringstream geek(s);
+    int x = 0;
+    geek >> x;
+    return x;
+}
 
 void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCriteria, int index)
 {
@@ -471,9 +478,9 @@ void addEvent() //dodavanje dogadjaja
     std::string *arrayCities = new std::string[55];
     std::string *array = new std::string[3];
     std::string *arrayCategories = new std::string[200];
-
+    std::string date1,day, month, year,minutes,hours,time1,k,j;
     static int i, p;
-    int k, j, day, month, year, m, n;
+    
 
     std::cout << "Naziv dogadjaja: " << std::endl;
     std::getline(std::cin, name);
@@ -498,8 +505,8 @@ void addEvent() //dodavanje dogadjaja
     {
         std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
         std::cin >> k;
-    } while (k > i || k < 0);
-    location->setCity(arrayCities[k - 1]);
+    } while (stringToInt(k) > i || stringToInt(k)< 0);
+    location->setCity(arrayCities[stringToInt(k)- 1]);
 
     infile.close();
 
@@ -526,20 +533,41 @@ void addEvent() //dodavanje dogadjaja
     {
         std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
         std::cin >> j;
-    } while (j > p || j < 0);
-    array[2] = arrayCategories[j - 1];
+    } while (stringToInt(j) > p || stringToInt(j) < 0);
+    array[2] = arrayCategories[stringToInt(j) - 1];
     do
     {
-        std::cout << "Unesite datum, dan mjesec godina: " << std::endl;
-        std::cin >> day >> month >> year;
-    } while (!date->setDate(day, month, year));
+        day.clear(); month.clear(); year.clear();
+        
+        do {
+            std::cout << "Unesite datum (xx.xx.xxxx.): " << std::endl;
+            std::cin >> date1;
+        } while (date1.length() != 11);
+        day.push_back(date1[0]);
+        day.push_back(date1[1]);
+        month.push_back(date1[3]);
+        month.push_back(date1[4]);
+        year.push_back(date1[6]);
+        year.push_back(date1[7]);
+        year.push_back(date1[8]);
+        year.push_back(date1[9]);
+        
+    } while (!date->setDate(stringToInt(day),stringToInt( month),stringToInt( year)));
     do
     {
-        std::cout << "Unesite vrijeme, sate i minute:" << std::endl;
-        std::cin >> m >> n;
-    } while (!(time->setHours(m) && time->setMinutes(n)));
+        hours.clear(); minutes.clear();
+        do {
+            std::cout << "Unesite vrijeme(xx:xx):" << std::endl;
+            std::cin >> time1;
+        } while (time1.length() != 5);
+        hours.push_back(time1[0]);
+        hours.push_back(time1[1]);
+        minutes.push_back(time1[3]);
+        minutes.push_back(time1[4]);
 
-    Event newEvent = Event(array[0], array[1], location->getCity(), location->getAddress(), array[2], date->getDay(), date->getMonth(), date->getYear(), time->getHours(), time->getHours());
+    } while (!(time->setHours(stringToInt(hours)) && time->setMinutes(stringToInt(minutes))));
+
+    Event newEvent = Event(array[0], array[1], location->getCity(), location->getAddress(), array[2], date->getDay(), date->getMonth(), date->getYear(), time->getHours(), time->getMinutes());
 
     delete time;
     delete date;
@@ -555,7 +583,7 @@ int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
 {
     std::ofstream fileOut("./Database/events.txt", std::ios::app);
     fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "."
-            << "|" <<"| |"<< std::endl;
+            << "| |"<< std::endl;
     fileOut.close();
     return 1;
 }
