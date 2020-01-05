@@ -30,15 +30,16 @@ int Time::getHours()
 int Time::setHours(int hours)
 {
 
-	if (hours < 24 && hours >= 0)
+	if (hours < 24 && hours >=0)
 
 	{
 		this->hours = hours;
 		return 1;
+	
 	}
 	else if (hours == 24)
 	{
-		hours = 0;
+		this-> hours = 0;
 		return 1;
 	}
 	else
