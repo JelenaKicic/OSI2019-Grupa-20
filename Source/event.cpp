@@ -455,18 +455,18 @@ void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCrite
 			std::cout << std::endl;
 		} while (select < 1 || select > 3);
 
-		if (select == 1) addEvent();
+		if (select == 1)
+        {
+            std::cin.clear();
+            fflush(stdin);
+            addEvent();
+        }
 		
 		//	if (select == 2)  poziv izmjene dogadjaja
 			
 		if (select == 3) deleteEvent(allEvents, eventsByCriteria, index);
 	}
-	
-
-	
 }
-
-
 
 void addEvent() //dodavanje dogadjaja
 {
@@ -479,8 +479,7 @@ void addEvent() //dodavanje dogadjaja
     std::string *array = new std::string[3];
     std::string *arrayCategories = new std::string[200];
     std::string date1,day, month, year,minutes,hours,time1,k,j;
-    static int i, p;
-    
+    int i, p;
 
     std::cout << "Naziv dogadjaja: " << std::endl;
     std::getline(std::cin, name);
@@ -493,6 +492,7 @@ void addEvent() //dodavanje dogadjaja
     std::cout << "Izabrati jedan od sledecih ponudjenih gradova: " << std::endl;
 
     std::ifstream infile("./Database/cities.txt");
+    i = 0;
     while (std::getline(infile, line))
     {
 
@@ -517,6 +517,8 @@ void addEvent() //dodavanje dogadjaja
     location->setAddress(adress);
 
     std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
+
+    p = 0;
     std::ifstream infile1("./Database/categories.txt");
     while (std::getline(infile1, line1))
     {
