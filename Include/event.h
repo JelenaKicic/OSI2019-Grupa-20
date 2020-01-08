@@ -12,7 +12,6 @@
 #include <bits/stdc++.h>
 #include <vector>
 #include<iomanip>
-// #include <conio.h>
 
 class Event
 {
@@ -47,7 +46,7 @@ class Event
 	
 
 	friend void geteventsByOrder(int, int);
-	 friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
+	friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
     friend void sortEvents(int, std::vector<Event>&);
     friend void sort(std::vector<Event>&, int (*cmp)(Event &, Event &));
     friend void deleteEvent(std::vector<Event> &, std::vector<Event>&, int);
