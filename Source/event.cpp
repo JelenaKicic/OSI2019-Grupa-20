@@ -473,8 +473,8 @@ void addEvent() //dodavanje dogadjaja
     std::string* arrayCities = new std::string[55];
     std::string* array = new std::string[3];
     std::string* arrayCategories = new std::string[200];
-    std::string date1, day, month, year, minutes, hours, time1, k, j, c = ":",s,point=".",r,q,t;
-    int i, p;
+    std::string date1, day, month, year, minutes, hours, time1, k, j, c = ":", s, point = ".", r, q, t;
+    int i, p, w,v;
 
     std::cout << "Naziv dogadjaja: " << std::endl;
     std::getline(std::cin, name);
@@ -500,7 +500,7 @@ void addEvent() //dodavanje dogadjaja
     {
         std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
         std::cin >> k;
-    } while (stringToInt(k) > i || stringToInt(k) < 0);
+    } while (stringToInt(k) > i || stringToInt(k) < 0 );
     location->setCity(arrayCities[stringToInt(k) - 1]);
 
     infile.close();
@@ -534,15 +534,24 @@ void addEvent() //dodavanje dogadjaja
     array[2] = arrayCategories[stringToInt(j) - 1];
     do
     {
+        v = 0;
         day.clear(); month.clear(); year.clear(); r.clear(); q.clear(); t.clear();
         std::cin.clear();
         fflush(stdin);
         std::cout << "Unesite datum (xx.xx.xxxx.): " << std::endl;
         std::getline(std::cin, date1);
         day.push_back(date1[0]);
+        if (isdigit(day.back()))
+            v++;
         day.push_back(date1[1]);
+        if (isdigit(day.back()))
+            v++;
         month.push_back(date1[3]);
+        if (isdigit(month.back()))
+            v++;
         month.push_back(date1[4]);
+        if (isdigit(month.back()))
+            v++;
         year.push_back(date1[6]);
         year.push_back(date1[7]);
         year.push_back(date1[8]);
@@ -552,21 +561,30 @@ void addEvent() //dodavanje dogadjaja
         t.push_back(date1[10]);
 
 
-    } while ((date1.length() != 11) || (!date->setDate(stringToInt(day), stringToInt(month), stringToInt(year)))|| r.compare(point ) || q.compare(point)|| t.compare(point));
+    } while ((date1.length() != 11) || v!=4 || (!date->setDate(stringToInt(day), stringToInt(month), stringToInt(year)) || r.compare(point) || q.compare(point) || t.compare(point)));
     do
     {
+        w=0;
         hours.clear(); minutes.clear(); s.clear();
         std::cin.clear();
         fflush(stdin);
         std::cout << "Unesite vrijeme(xx:xx):" << std::endl;
         std::getline(std::cin, time1);
         hours.push_back(time1[0]);
+        if (isdigit(hours.back()))
+            w++;
         hours.push_back(time1[1]);
+        if (isdigit(hours.back()))
+            w++;
         minutes.push_back(time1[3]);
+        if (isdigit(minutes.back()))
+            w++;
         minutes.push_back(time1[4]);
+        if (isdigit(minutes.back()))
+            w++;
         s.push_back(time1[2]);
-    } while (time1.length() != 5 || s.compare(c) || !(time->setHours(stringToInt(hours)) && time->setMinutes(stringToInt(minutes))));
-
+    } while (time1.length() != 5 || w!=4 || s.compare(c) || !(time->setHours(stringToInt(hours) || time->setMinutes(stringToInt(minutes)))));
+    
     Event newEvent = Event(array[0], array[1], location->getCity(), location->getAddress(), array[2], date->getDay(), date->getMonth(), date->getYear(), time->getHours(), time->getMinutes());
 
     delete time;
