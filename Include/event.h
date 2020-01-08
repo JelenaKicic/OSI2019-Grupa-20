@@ -71,3 +71,4 @@ int compareType(Event &, Event &);
 int compareType(Event &, Event &);
 int compareTime(Event &, Event &);
 void eventOverviewCriteria();
+int stringToInt(std::string );
