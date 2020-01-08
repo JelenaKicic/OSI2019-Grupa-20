@@ -1,6 +1,4 @@
 #include "../Include/event.h"
-#include <iostream>
-#include <fstream>
 
 //pomocna funkcija za ispitivanje izbranog kriterijuma i citanje odgovarajucih dogadjaja
 void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std::vector<Event> &eventsByCriteria)
@@ -35,9 +33,6 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
  
         category = categories[j-1];
     }
- 
-    // std::cout << "category: " << category << std::endl;
-
 
     std::ifstream file("./Database/events.txt");
 
@@ -45,8 +40,6 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
 
     std::string line, name, description, city, address, type, dayStr, monthStr, yearStr, hoursStr, minutesStr, input, comments;
     int day, month, year, hours, minutes;
-
-
 
     while (getline(file, line))
     {
@@ -160,7 +153,6 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
             eventsByCriteria.push_back(event);
         }
     }
-
 }
 
 //leksikografsko poredjenje naziva dva dogadjaja
@@ -213,7 +205,7 @@ void sort(std::vector<Event> &events, int (*cmp)(Event &, Event &))
     {
         for (i = h; i < n; i++)
         {
-            Event &x = events[i];
+            Event x = events[i];
             for (j = i; j >= h && (*cmp)(x, events[j - h]) < 0; j -= h)
                 events[j] = events[j - h];
             events[j] = x;
