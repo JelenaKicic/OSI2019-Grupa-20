@@ -93,7 +93,7 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
         {
             time_t now = time(0);
             tm *ltm = localtime(&now);
-            if (event.getYear() < 1900 + ltm->tm_year)
+            if (event.getYear() > 1900 + ltm->tm_year)
             {
                 eventsByCriteria.push_back(event);
             }
