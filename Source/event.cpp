@@ -349,14 +349,21 @@ void Event::setDateRead(int day, int month, int year)
     this->date.setDateRead(day, month, year);
 }
 
+
 int search(std::vector<Event>& first, std::vector<Event>& second, int index) //trazi element iz second u first vraca indeks nadjenog 
 {
-	while (index >= second.size());
+	while (index <= second.size())
 	{
-		std::string tmp = second[index].getName();
+		std::string tmpN = second[index].getName();
+		int tmpD = second[index].getDay();
+		int tmpM = second[index].getMonth();
+		int tmpY = second[index].getYear();
+		int tmpMi = second[index].getMinutes();
+		int tmpH = second[index].getHours();
 		for (int i = 0; i < first.size(); i++)
 		{
-			if (tmp == first[i].getName())
+			if (tmpN == first[i].getName() && tmpD == first[i].getDay() && tmpM == first[i].getMonth() && tmpY == first[i].getYear() &&
+				tmpMi == first[i].getMinutes() &&  tmpH == first[i].getHours())
 				return i;
 
 		}
@@ -417,11 +424,8 @@ void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCrite
 			std::cout << "  Grad:       " << allEvents[indexAllEvents].getCity() << std::endl;
 			std::cout << "  Adresa:     " << allEvents[indexAllEvents].getAddress() << std::endl; 
 			std::cout << "  Tip:        " << allEvents[indexAllEvents].getType() << std::endl;
-			std::cout << "  Dan:        " << allEvents[indexAllEvents].getDay() << std::endl;
-			std::cout << "  Mjesec:     " << allEvents[indexAllEvents].getMonth() << std::endl;
-			std::cout << "  Godina:     " << allEvents[indexAllEvents].getYear() << std::endl;
-			std::cout << "  Sat:        " << allEvents[indexAllEvents].getHours() << std::endl;
-			std::cout << "  Minut:      " << allEvents[indexAllEvents].getMinutes() << std::endl;
+			std::cout << "  Datum:      " << allEvents[indexAllEvents].date << std::endl;
+			std::cout << "  Vrijeme:    " << allEvents[indexAllEvents].time << std::endl;
 			std::cout << "  Komentari:  " << std::endl;
 			for (int i = 0; i < eventsByCriteria[indexAllEvents].comments.size(); i++)
 			{
