@@ -671,13 +671,16 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     + NumberToString(eventsByCriteria[index].date.getMonth()) 
     + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
 
-    for (int i = 0; i < numOfComments; i++)
-        pom1 = pom1 + eventsByCriteria[index].comments[i] + ",";
-    
-    pom1 = pom1 + "|";
+    for (int i = 0; i <  numOfComments ; i++)
+    	if(i == numOfComments -1)
+	        pom1 = pom1 + eventsByCriteria[index].comments[i];
+	    else
+	        pom1 = pom1 + eventsByCriteria[index].comments[i] + ",";
 
-    pom2 = pom1 + komentar + "|";
+    pom2 = pom1 + "," + komentar;
 
+    std::cout<< pom1<< std::endl;
+    std::cout<< pom2<< std::endl;
     //Setovanje komentara u nizove
     allEvents[indexAllEvents].setComment(komentar);
     eventsByCriteria[index].setComment(komentar);

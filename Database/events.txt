@@ -1,1 +1,1 @@
-imee|opis|Trnovo|adress|Izlozba|23:40|13.9.2021.|JADGAJFGAJalhlghaghafhalfaSuba je konjina ,|
+imee|opis|Trnovo|adress|Izlozba|23:40|13.9.2021.|1,2,3,5,6,7,8|
