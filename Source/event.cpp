@@ -167,8 +167,6 @@ int compareType(Event &event1, Event &event2)
 //poredjenje datuma i vremena dva dogadjaja
 int compareTime(Event &event1, Event &event2)
 {
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
 
     if (event1.getYear() < event2.getYear())
         return -1;
@@ -227,8 +225,6 @@ void sortEvents(int sortCriteria, std::vector<Event> &events)
 void geteventsByOrder(int overviewCriteria, int sortCriteria)
 {
     std::vector<Event> allEvents, eventsByCriteria;
-
-    int numAllEvenets;
 
     checkOverviewCriteria(overviewCriteria, allEvents, eventsByCriteria);
     sortEvents(sortCriteria, eventsByCriteria);
