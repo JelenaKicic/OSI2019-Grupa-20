@@ -4,6 +4,7 @@
 #include "./location.h"
 #include "./time.h"
 #include "./login.h"
+#include "./menu.h"
 
 #include <string>
 #include <iostream>

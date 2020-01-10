@@ -394,11 +394,7 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event>& eventsByCrit
 
 			}
 			file.close();
-			
-
 		}
-
-
 	}
 }
 int stringToInt(std::string s) 
@@ -442,6 +438,7 @@ void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCrite
 			<< "1. Dodavanje dogadjaja" << std::endl
 			<< "2. Izmjena dogadjaja" << std::endl
 			<< "3. Brisanje dogadjaja" << std::endl
+            << "4. Nazad" << std::endl
 			<< std::endl;
 
 		do
@@ -449,7 +446,7 @@ void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCrite
 			std::cout << "Unesi broj:" << std::endl;
 			std::cin >> select ;
 			std::cout << std::endl;
-		} while (select < 1 || select > 3);
+		} while (select < 1 || select > 4);
 
 		if (select == 1)
         {
@@ -461,6 +458,8 @@ void printEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCrite
 		//	if (select == 2)  poziv izmjene dogadjaja
 			
 		if (select == 3) deleteEvent(allEvents, eventsByCriteria, index);
+
+        if (select == 4) processMenu(admin_menu);
 	}
 }
 
