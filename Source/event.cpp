@@ -437,6 +437,11 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
         event.setType(allEvents[indexAllEvents].getType());
         event.setDate(allEvents[indexAllEvents].date.getDay(), allEvents[indexAllEvents].date.getMonth(), allEvents[indexAllEvents].date.getYear());
         event.setTime(allEvents[indexAllEvents].time.getHours(), allEvents[indexAllEvents].time.getMinutes());
+        for (int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
+        {
+            event.comments.push_back(allEvents[indexAllEvents].comments[i]);
+        }
+        
         do{
         std::cout << "Izaberite zeljeno polje: " << std::endl;
         std::cout << "1. Naziv" << std::endl;
@@ -948,9 +953,15 @@ void addEvent() //dodavanje dogadjaja
 
 int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
 {
+    std::string comments = "";
+
+    for (int i = 0; i < newEvent.comments.size(); i++)
+    {
+        comments += newEvent.comments[i] + ",";
+    }
     std::ofstream fileOut("./Database/events.txt", std::ios::app);
     fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "."
-            << "| |" << std::endl;
+            << "|" << comments <<  "|" << std::endl;
 
     fileOut.close();
     return 1;
