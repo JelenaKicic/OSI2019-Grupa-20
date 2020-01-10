@@ -659,24 +659,27 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     std::string pom1, pom2, komentar;
     std::cout << "Unesi komentar: ";
     std::getline(std::cin, komentar);
-    int i = 1;
+
     int indexAllEvents = search(allEvents, eventsByCriteria, index);
-    int temp = eventsByCriteria[index].comments.size();
-    //Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
-    if (temp <= 1)
-        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
-    else
+    int numOfComments = eventsByCriteria[index].comments.size();
+   
+    pom1 = eventsByCriteria[index].getAddress() + "|" 
+    + eventsByCriteria[index].getType() + "|" 
+    + NumberToString(eventsByCriteria[index].getHours()) + ":" 
+    + NumberToString(eventsByCriteria[index].getMinutes()) + "|" 
+    + NumberToString(eventsByCriteria[index].getDay()) + "." 
+    + NumberToString(eventsByCriteria[index].date.getMonth()) + "." 
+    + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" ;
+        
+
+
+    for(int i = 0; i < numOfComments; i++)
     {
-        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" + eventsByCriteria[index].comments[1];
+        pom1 = pom1 + eventsByCriteria[index].comments[++i] + ",";
     }
-    while (i < (temp - 1))
-    {
-        pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
-    }
-    if (temp <= 1)
-        pom2 = pom1 + komentar;
-    else
-        pom2 = pom1 + ", " + komentar;
+
+    pom1 = pom1 + komentar + ",";
+    
     //Setovanje komentara u nizove
     allEvents[indexAllEvents].setComment(komentar);
     eventsByCriteria[index].setComment(komentar);
