@@ -652,6 +652,7 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     std::cout << "Unesi komentar: ";
 
     std::getline(std::cin, komentar);
+    komentar += ",";
 
     int i = 1;
     int indexAllEvents = search(allEvents, eventsByCriteria, index);
@@ -782,7 +783,7 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
         }
 
         if (stringToInt(select) == 2)
-            processMenu(admin_menu);
+            processMenu(client_menu);
 
     }
 }
