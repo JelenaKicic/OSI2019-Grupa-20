@@ -371,7 +371,7 @@ int search(std::vector<Event> &first, std::vector<Event> &second, int index) //t
     return -1;
 }
 
-void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
+void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
 {
     std::ofstream file("./Database/events.txt");
     int i;
@@ -396,12 +396,74 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrit
         }
     }
 }
+
 int stringToInt(std::string s)
 {
     std::stringstream geek(s);
     int x = 0;
     geek >> x;
     return x;
+}
+
+//Pomocna funkcija koja cijeli broj pretvara u string
+std::string NumberToString(int number)
+{
+    std::ostringstream ss;
+
+    ss << number;
+    return ss.str();
+}
+
+//Funkcija za dodavanje komentara
+void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+{
+    std::ostringstream text;
+    std::string pom1, pom2, komentar;
+    std::cout << "Unesi komentar: ";
+
+    std::getline(std::cin, komentar);
+
+    int i = 1;
+    int indexAllEvents = search(allEvents, eventsByCriteria, index);
+    int temp = eventsByCriteria[index].comments.size();
+
+    //Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
+    if (temp <= 1)
+        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
+    else
+    {
+        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" + eventsByCriteria[index].comments[1];
+    }
+
+    while (i < (temp - 1))
+    {
+        pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
+    }
+
+    if (temp <= 1)
+        pom2 = pom1 + komentar;
+    else
+        pom2 = pom1 + ", " + komentar;
+
+    //Setovanje komentara u nizove
+    allEvents[indexAllEvents].setComment(komentar);
+    eventsByCriteria[index].setComment(komentar);
+
+    //Citanje fajla u string
+    std::ifstream in_file("./Database/events.txt");
+    text << in_file.rdbuf();
+
+    std::string str = text.str();
+    std::string str_found = pom1;
+    std::string str_replace = pom2;
+
+    size_t pos = str.find(str_found);
+    str.replace(pos, std::string(str_found).length(), str_replace);
+    in_file.close();
+
+    //Upisivanje modifikovanog stringa u isti fajl
+    std::ofstream out_file("./Database/events.txt");
+    out_file << str;
 }
 
 void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
@@ -422,9 +484,10 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
             std::cout << "  Datum:      " << allEvents[indexAllEvents].date << std::endl;
             std::cout << "  Vrijeme:    " << allEvents[indexAllEvents].time << std::endl;
             std::cout << "  Komentari:  " << std::endl;
-            for (int i = 0; i < eventsByCriteria[indexAllEvents].comments.size(); i++)
+
+            for (int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
             {
-                std::cout << "             " << eventsByCriteria[indexAllEvents].comments[i] << std::endl;
+                std::cout << "             " << allEvents[indexAllEvents].comments[i] << std::endl;
             }
 
             //komentari ispis
