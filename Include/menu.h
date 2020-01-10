@@ -23,6 +23,7 @@ void processMenu(const std::vector <Menu_Option> &);
 std::string intToString(int);
 
 // Functions for parsing main menu
+void parseMainMenu();
 void mainMenuParseLogin();
 void mainMenuParseClientSection();
 
@@ -32,6 +33,7 @@ void adminMenuParseAddEvent();
 void adminMenuParseEventOverview();
 
 // Functions for parsing client menu
+void parseClientMenu();
 void clientMenuParseQuiz();
 void clientMenuParseEventOverview();
 
@@ -48,10 +50,12 @@ const std::vector <Menu_Option> admin_menu =
       {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
       {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
       {"3", "Pregeld dogadjaja", adminMenuParseEventOverview},
+      {"4", "Nazad", parseMainMenu},
     };
 
 const std::vector <Menu_Option> client_menu =
     {
       {"1", "Pregled dogadjaja", clientMenuParseEventOverview},
       {"2", "Kviz", clientMenuParseQuiz},
+      {"3", "Nazad", parseMainMenu},
     };
