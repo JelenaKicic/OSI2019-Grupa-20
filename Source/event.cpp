@@ -374,7 +374,7 @@ int search(std::vector<Event> &first, std::vector<Event> &second, unsigned int i
 void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
 {
     std::ofstream file("./Database/events.txt");
-    int i;
+    unsigned int i;
 
     if (index < 0 || index >= eventsByCriteria.size())
         std::cout << "Brisanje nije moguce." << std::endl;
@@ -414,7 +414,8 @@ void modificationEvent(std::vector<Event> &allEvents, std::vector<Event> &events
         std::string *arrayCities = new std::string[55];
         std::string *arrayCategories = new std::string[200];
         std::string date1, day, month, year, minutes, hours, time1, k, j, c = ":", s, point = ".", r, q, t, choice1;
-        int i, p, w, v, choice;
+        int p, w, v, choice;
+        unsigned int i;
 
         int indexAllEvents = search(allEvents, eventsByCriteria, index);
         if (indexAllEvents != -1)
