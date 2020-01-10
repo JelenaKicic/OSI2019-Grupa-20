@@ -660,7 +660,7 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     std::cout << "Unesi komentar: ";
     std::getline(std::cin, komentar);
 
-    int i = 1;
+    int i = 0;
     int indexAllEvents = search(allEvents, eventsByCriteria, index);
     int temp = eventsByCriteria[index].comments.size();
 
@@ -682,18 +682,19 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
         + NumberToString(eventsByCriteria[index].getDay()) + "." 
         + NumberToString(eventsByCriteria[index].date.getMonth()) + "." 
         + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" 
-        + eventsByCriteria[index].comments[1];
+        + eventsByCriteria[index].comments[i++];
     }
 
     while (i < (temp - 1))
     {
-        pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
+        pom1 = pom1 + ", " + eventsByCriteria[index].comments[i++];
     }
 
     if (temp <= 1)
         pom2 = pom1 + komentar;
     else
         pom2 = pom1 + ", " + komentar;
+
     //Setovanje komentara u nizove
     allEvents[indexAllEvents].setComment(komentar);
     eventsByCriteria[index].setComment(komentar);
@@ -702,8 +703,10 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     std::ifstream in_file("./Database/events.txt");
     text << in_file.rdbuf();
     std::string str = text.str();
+
     std::string str_found = pom1;
     std::string str_replace = pom2;
+
     size_t pos = str.find(str_found);
     str.replace(pos, std::string(str_found).length(), str_replace);
     in_file.close();
