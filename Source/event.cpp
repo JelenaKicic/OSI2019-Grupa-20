@@ -371,6 +371,7 @@ int search(std::vector<Event> &first, std::vector<Event> &second, int index) //t
     return -1;
 }
 
+//brisanje dogadjaja
 void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
 {
     std::ofstream file("./Database/events.txt");
@@ -397,6 +398,7 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrit
     }
 }
 
+//izmjena dogadjaja
 void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCriteria, int index)
 {
     std::ofstream file("./Database/events.txt");
@@ -449,9 +451,8 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
         fflush(stdin);
         do {
             std::cout << "Unesite redni broj:" << std::endl;
-            std::cin >> choice;
-            //std::getline(std::cin, choice);
-            //choice = stringToInt(choice1);
+            std::getline(std::cin, choice1);
+            choice = stringToInt(choice1);
         } while (!choice==1 || !choice == 2 || !choice == 3 || !choice == 4 || !choice == 5 || !choice == 6 || !choice == 7 || !choice == 8);
         std::cin.clear();
         fflush(stdin);
@@ -529,7 +530,7 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
                 std::cin >> j;
             } while (stringToInt(j) > p || stringToInt(j) < 0);
             event.setType(arrayCategories[stringToInt(j) - 1]);
-            //array[2] = arrayCategories[stringToInt(j) - 1];
+
         }
         std::cin.clear();
         fflush(stdin);
@@ -565,7 +566,7 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
 
 
             } while ((date1.length() != 11) || v != 4 || (!date.setDate(stringToInt(day), stringToInt(month), stringToInt(year)) || r.compare(point) || q.compare(point) || t.compare(point)));
-            //event->setDate(date->getDay(), date->getMonth(), date->getYear());
+
             event.setDate(date.getDay(), date.getMonth(), date.getYear());
         }
         std::cin.clear();
@@ -625,7 +626,7 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
 
     }
 }
-
+//Pomocna funkcija koja string pretvara u broj
 int stringToInt(std::string s) 
 {
     std::stringstream geek(s);
