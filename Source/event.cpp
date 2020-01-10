@@ -583,7 +583,7 @@ void addEvent() //dodavanje dogadjaja
         if (isdigit(minutes.back()))
             w++;
         s.push_back(time1[2]);
-    } while (time1.length() != 5 || w!=4 || s.compare(c) || !(time->setHours(stringToInt(hours) || time->setMinutes(stringToInt(minutes)))));
+    } while (time1.length() != 5 || w!=4 || s.compare(c) || !time->setHours(stringToInt(hours)) || !time->setMinutes(stringToInt(minutes)));
     
     Event newEvent = Event(array[0], array[1], location->getCity(), location->getAddress(), array[2], date->getDay(), date->getMonth(), date->getYear(), time->getHours(), time->getMinutes());
 
@@ -593,7 +593,6 @@ void addEvent() //dodavanje dogadjaja
     delete[] array;
     delete[] arrayCategories;
     delete[] arrayCities;
-
     newEvent.writeInFile(newEvent);
 }
 
