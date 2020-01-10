@@ -4,6 +4,7 @@
 #include "./location.h"
 #include "./time.h"
 #include "./login.h"
+#include "./menu.h"
 
 #include <string>
 #include <iostream>
@@ -11,8 +12,7 @@
 #include <sstream>
 #include <bits/stdc++.h>
 #include <vector>
-#include<iomanip>
-// #include <conio.h>
+#include <iomanip>
 
 class Event
 {
@@ -41,10 +41,8 @@ class Event
 	static int getNumberOfEvents(std::ifstream &);
 	void printEventLine();
 	int writeInFile(Event &);
-	int search(std::vector<Event>&, std::vector<Event>&, int);
+	int search(std::vector<Event> &, std::vector<Event> &, int);
 	// void addEvent();
-   
-	
 
 	friend void geteventsByOrder(int, int);
 	 friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
@@ -53,7 +51,6 @@ class Event
     friend void deleteEvent(std::vector<Event> &, std::vector<Event>&, int);
 	friend void printEvent(std::vector<Event>&, std::vector<Event>&, int);
 	friend void addCommentary(std::vector<Event>&, std::vector<Event>&, int);
-
 
 	std::string getName();
 	std::string getDescription();

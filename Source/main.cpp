@@ -6,7 +6,7 @@ int main()
 {
 	
   SetConsoleOutputCP(65001);
-  processMenu(main_menu);
+  parseMainMenu();
   std::cin.get();
 
   return 0;

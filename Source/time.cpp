@@ -14,9 +14,8 @@ Time::Time(int hour, int minute)
 
 std::ostream &operator<<(std::ostream &stream, const Time &time)
 {
-	return stream << time.hours << ':' << time.minutes;
+	return stream << (time.hours / 10 == 0 ? "0" : "") << time.hours << ':' << (time.minutes / 10 == 0 ? "0" : "") << time.minutes;
 }
-
 
 int Time::getMinutes()
 {
@@ -30,16 +29,15 @@ int Time::getHours()
 int Time::setHours(int hours)
 {
 
-	if (hours < 24 && hours >=0)
+	if (hours < 24 && hours >= 0)
 
 	{
 		this->hours = hours;
 		return 1;
-	
 	}
 	else if (hours == 24)
 	{
-		this-> hours = 0;
+		this->hours = 0;
 		return 1;
 	}
 	else

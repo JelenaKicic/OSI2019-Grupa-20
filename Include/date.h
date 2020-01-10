@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 
 class Date
@@ -17,7 +18,7 @@ public:
 
   int setDate(int, int, int);
   void setDateRead(int, int, int);
-  
+
   int getDay();
   int getMonth();
   int getYear();
