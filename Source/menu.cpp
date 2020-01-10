@@ -5,16 +5,11 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
 {
     int menu_length;
     int invalid_choice = 0;
-    static const std::vector <Menu_Option> *previous_menu = nullptr;
     menu_length = menu_option.size();
 
     for (int i = 0; i < menu_length; ++i)
     {
         std::cout << menu_option[i].choice << ". " << menu_option[i].selection_text << std::endl;
-    }
-    if (!(menu_option == main_menu))
-    {
-         std::cout << menu_length + 1 << ". " << "Nazad" << std::endl;
     }
 
     std::cout << "0. Izlaz" << std::endl;
@@ -34,13 +29,8 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
         {
             invalid_choice = 1;
             Menu_Processing_Function_Pointer p_function = menu_option[i].p_procesing_function;
-            previous_menu = &menu_option;
             (p_function)();
             break;
-        }
-        else if (choice == intToString(menu_length + 1))
-        {
-            processMenu(*previous_menu);
         }
         else if (choice == "0")
         {
@@ -81,6 +71,12 @@ std::string intToString(int n)
 
 /* Functions for parsing main menu */
 
+// Function for parsing main menu
+void parseMainMenu()
+{
+    processMenu(main_menu);
+}
+
 // Parses login menu
 void mainMenuParseLogin()
 {
@@ -112,7 +108,6 @@ void adminMenuParseAddCategory()
     processMenu(admin_menu);
 }
 
-
 // Parse add event option from the admin menu
 void adminMenuParseAddEvent()
 {
@@ -129,6 +124,12 @@ void adminMenuParseEventOverview()
 }
 
 /* Functions for parsing client menu */
+
+// Function for parsing client menu
+void parseClientMenu()
+{
+    processMenu(client_menu);
+}
 
 // Parse quiz option from the client menu
 void clientMenuParseQuiz()
