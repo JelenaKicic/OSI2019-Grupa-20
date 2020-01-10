@@ -19,7 +19,7 @@ struct Menu_Option
 };
 
 void clearInputBuffer();
-void processMenu(const std::vector <Menu_Option> &);
+void processMenu(const std::vector<Menu_Option> &);
 std::string intToString(int);
 
 // Functions for parsing main menu
@@ -37,25 +37,24 @@ void parseClientMenu();
 void clientMenuParseQuiz();
 void clientMenuParseEventOverview();
 
-
 // Menus
-const std::vector <Menu_Option> main_menu = 
+const std::vector<Menu_Option> main_menu =
     {
-      {"1", "Prijava na sistem",  mainMenuParseLogin},
-      {"2", "Korisnicki dio", mainMenuParseClientSection},
-    };
+        {"1", "Prijava na sistem", mainMenuParseLogin},
+        {"2", "Korisnicki dio", mainMenuParseClientSection},
+};
 
-const std::vector <Menu_Option> admin_menu =
+const std::vector<Menu_Option> admin_menu =
     {
-      {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
-      {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
-      {"3", "Pregeld dogadjaja", adminMenuParseEventOverview},
-      {"4", "Nazad", parseMainMenu},
-    };
+        {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
+        {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
+        {"3", "Pregeld dogadjaja", adminMenuParseEventOverview},
+        {"4", "Nazad", parseMainMenu},
+};
 
-const std::vector <Menu_Option> client_menu =
+const std::vector<Menu_Option> client_menu =
     {
-      {"1", "Pregled dogadjaja", clientMenuParseEventOverview},
-      {"2", "Kviz", clientMenuParseQuiz},
-      {"3", "Nazad", parseMainMenu},
-    };
+        {"1", "Pregled dogadjaja", clientMenuParseEventOverview},
+        {"2", "Kviz", clientMenuParseQuiz},
+        {"3", "Nazad", parseMainMenu},
+};

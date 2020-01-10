@@ -12,7 +12,7 @@
 #include <sstream>
 #include <bits/stdc++.h>
 #include <vector>
-#include<iomanip>
+#include <iomanip>
 
 class Event
 {
@@ -41,18 +41,15 @@ class Event
 	static int getNumberOfEvents(std::ifstream &);
 	void printEventLine();
 	int writeInFile(Event &);
-	int search(std::vector<Event>&, std::vector<Event>&, int);
+	int search(std::vector<Event> &, std::vector<Event> &, int);
 	// void addEvent();
-   
-	
 
 	friend void geteventsByOrder(int, int);
-	friend void checkOverviewCriteria(int, std::vector<Event>&, std::vector<Event>&);
-    friend void sortEvents(int, std::vector<Event>&);
-    friend void sort(std::vector<Event>&, int (*cmp)(Event &, Event &));
-    friend void deleteEvent(std::vector<Event> &, std::vector<Event>&, int);
-	friend void printEvent(std::vector<Event>&, std::vector<Event>&, int);
-
+	friend void checkOverviewCriteria(int, std::vector<Event> &, std::vector<Event> &);
+	friend void sortEvents(int, std::vector<Event> &);
+	friend void sort(std::vector<Event> &, int (*cmp)(Event &, Event &));
+	friend void deleteEvent(std::vector<Event> &, std::vector<Event> &, unsigned int);
+	friend void printEvent(std::vector<Event> &, std::vector<Event> &, int);
 
 	std::string getName();
 	std::string getDescription();
@@ -71,4 +68,4 @@ int compareType(Event &, Event &);
 int compareType(Event &, Event &);
 int compareTime(Event &, Event &);
 void eventOverviewCriteria();
-int stringToInt(std::string );
+int stringToInt(std::string);
