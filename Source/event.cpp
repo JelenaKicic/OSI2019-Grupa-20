@@ -245,7 +245,6 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
             std::cin >> eventNumber;
         } while (stringToInt(eventNumber) <= 0 || stringToInt(eventNumber) > eventsByCriteria.size());
 
-        //ovdje umjesto jednog dogadjaja pozovi samo to za brisanje
         printEvent(allEvents, eventsByCriteria, stringToInt(eventNumber) - 1);
     }
     else
@@ -351,7 +350,7 @@ void Event::setDateRead(int day, int month, int year)
     this->date.setDateRead(day, month, year);
 }
 
-int search(std::vector<Event> &first, std::vector<Event> &second, int index) //trazi element iz second u first vraca indeks nadjenog
+int search(std::vector<Event> &first, std::vector<Event> &second, unsigned int index) //trazi element iz second u first vraca indeks nadjenog
 {
     while (index <= second.size())
     {
@@ -372,7 +371,7 @@ int search(std::vector<Event> &first, std::vector<Event> &second, int index) //t
 }
 
 //brisanje dogadjaja
-void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
 {
     std::ofstream file("./Database/events.txt");
     int i;
@@ -399,7 +398,7 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrit
 }
 
 //izmjena dogadjaja
-void modificationEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+void modificationEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
 {
     std::ofstream file("./Database/events.txt");
 
@@ -653,7 +652,7 @@ std::string NumberToString(int number)
 }
 
 //Funkcija za dodavanje komentara
-void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
 {
     std::ostringstream text;
     std::string pom1, pom2, komentar;
@@ -715,7 +714,7 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     out_file << str;
 }
 
-void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
 {
     if (index < 0 || index >= eventsByCriteria.size())
         std::cout << "Prikazivanje dogadjaja nije moguce." << std::endl;
