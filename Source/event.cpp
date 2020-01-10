@@ -652,6 +652,7 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     std::cout << "Unesi komentar: ";
 
     std::getline(std::cin, komentar);
+    komentar += ",";
 
     int i = 1;
     int indexAllEvents = search(allEvents, eventsByCriteria, index);
