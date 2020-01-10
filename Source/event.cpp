@@ -466,8 +466,6 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
             std::cout << "Naziv dogadjaja: " << std::endl;
             std::getline(std::cin, name);
 
-            std::cout << name << std::endl;
-
             event.setName(name);
         }
         std::cin.clear();
@@ -498,7 +496,8 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
             {
                 std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
                 std::cin >> k;
-            } while (stringToInt(k) > i || stringToInt(k) < 0);
+            } while (stringToInt(k) > i || stringToInt(k) < 1);
+
             event.setLocation(arrayCities[stringToInt(k) - 1], allEvents[indexAllEvents].getAddress());
            
             infile.close();
@@ -533,7 +532,7 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
             {
                 std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
                 std::cin >> j;
-            } while (stringToInt(j) > p || stringToInt(j) < 0);
+            } while (stringToInt(j) > p || stringToInt(j) < 1);
             event.setType(arrayCategories[stringToInt(j) - 1]);
 
         }
