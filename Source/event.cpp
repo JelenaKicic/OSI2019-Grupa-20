@@ -593,7 +593,7 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
                 if (isdigit(minutes.back()))
                     w++;
                 s.push_back(time1[2]);
-            } while (time1.length() != 5 || w != 4 || s.compare(c) || !time.setHours(stringToInt(hours)) || time.setMinutes(stringToInt(minutes)));
+            } while (time1.length() != 5 || w != 4 || s.compare(c) || !time.setHours(stringToInt(hours)) || !time.setMinutes(stringToInt(minutes)));
             event.setTime(time.getHours(), time.getMinutes());
             
         }
@@ -748,9 +748,9 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
             addEvent();
         }
 		
-		if (select == 2) 
+		if (stringToInt(select) == 2) 
             modificationEvent(allEvents, eventsByCriteria, index);
-            
+
         if (stringToInt(select) == 3)
             deleteEvent(allEvents, eventsByCriteria, index);
 
