@@ -471,9 +471,10 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
             std::cout << "  Datum:      " << allEvents[indexAllEvents].date << std::endl;
             std::cout << "  Vrijeme:    " << allEvents[indexAllEvents].time << std::endl;
             std::cout << "  Komentari:  " << std::endl;
-            for (int i = 0; i < eventsByCriteria[indexAllEvents].comments.size(); i++)
+            
+            for (int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
             {
-                std::cout << "             " << eventsByCriteria[indexAllEvents].comments[i] << std::endl;
+                std::cout << "             " << allEvents[indexAllEvents].comments[i] << std::endl;
             }
 
             //komentari ispis
