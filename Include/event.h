@@ -48,7 +48,7 @@ class Event
 	friend void checkOverviewCriteria(int, std::vector<Event> &, std::vector<Event> &);
 	friend void sortEvents(int, std::vector<Event> &);
 	friend void sort(std::vector<Event> &, int (*cmp)(Event &, Event &));
-	friend void deleteEvent(std::vector<Event> &, std::vector<Event> &, int);
+	friend void deleteEvent(std::vector<Event> &, std::vector<Event> &, unsigned int);
 	friend void printEvent(std::vector<Event> &, std::vector<Event> &, int);
 
 	std::string getName();

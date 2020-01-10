@@ -229,7 +229,7 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
     checkOverviewCriteria(overviewCriteria, allEvents, eventsByCriteria);
     sortEvents(sortCriteria, eventsByCriteria);
 
-    for (int i = 0; i < eventsByCriteria.size(); i++)
+    for (unsigned int i = 0; i < eventsByCriteria.size(); i++)
     {
         std::cout << i + 1 << ".";
         eventsByCriteria[i].printEventLine();
@@ -359,7 +359,7 @@ int search(std::vector<Event> &first, std::vector<Event> &second, int index) //t
     return -1;
 }
 
-void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, unsigned int index)
 {
     std::ofstream file("./Database/events.txt");
     int i;
