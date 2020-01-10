@@ -399,24 +399,24 @@ void deleteEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrit
 }
 
 //izmjena dogadjaja
-void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& eventsByCriteria, int index)
+void modificationEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
 {
     std::ofstream file("./Database/events.txt");
 
     if (index < 0 || index >= eventsByCriteria.size())
         std::cout << "Modifikacija nije moguca." << std::endl;
-    else 
+    else
     {
         std::string line, name, description, adress, line1;
         Date date;
         Time time;
         Event event;
         Location location;
-        std::string* arrayCities = new std::string[55];
-        std::string* arrayCategories = new std::string[200];
-        std::string date1, day, month, year, minutes, hours, time1, k, j, c = ":", s, point = ".", r, q, t,choice1;
+        std::string *arrayCities = new std::string[55];
+        std::string *arrayCategories = new std::string[200];
+        std::string date1, day, month, year, minutes, hours, time1, k, j, c = ":", s, point = ".", r, q, t, choice1;
         int i, p, w, v, choice;
-      
+
         int indexAllEvents = search(allEvents, eventsByCriteria, index);
         if (indexAllEvents != -1)
         {
@@ -441,197 +441,202 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
         {
             event.comments.push_back(allEvents[indexAllEvents].comments[i]);
         }
-        
-        do{
-        std::cout << "Izaberite zeljeno polje: " << std::endl;
-        std::cout << "1. Naziv" << std::endl;
-        std::cout << "2. Opis" << std::endl;
-        std::cout << "3. Grad" << std::endl;
-        std::cout << "4. Adresa" << std::endl;
-        std::cout << "5. Tip" << std::endl;
-        std::cout << "6. Datum" << std::endl;
-        std::cout << "7. Vrijeme" << std::endl;
-        std::cout << "8. Sacuvaj izmjena" << std::endl;
-        std::cin.clear();
-        fflush(stdin);
-        do {
-            std::cout << "Unesite redni broj:" << std::endl;
-            std::getline(std::cin, choice1);
-            choice = stringToInt(choice1);
-        } while (!choice==1 || !choice == 2 || !choice == 3 || !choice == 4 || !choice == 5 || !choice == 6 || !choice == 7 || !choice == 8);
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 1)
+
+        do
         {
-            std::cout << "Naziv dogadjaja: " << std::endl;
-            std::getline(std::cin, name);
-
-            event.setName(name);
-        }
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 2) {
-            std::cout << "Opis dogadjaja: " << std::endl;
-            std::getline(std::cin, description);
-
-            event.setDescription(description);
-        }
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 3)
-        {
-            std::cout << "Izabrati jedan od sledecih ponudjenih gradova: " << std::endl;
-
-            std::ifstream infile("./Database/cities.txt");
-            i = 0;
-            while (std::getline(infile, line))
-            {
-
-                std::cout << i + 1 << ". " << line << std::endl;
-                arrayCities[i] = line;
-                i++;
-            }
-
+            std::cout << "Izaberite zeljeno polje: " << std::endl;
+            std::cout << "1. Naziv" << std::endl;
+            std::cout << "2. Opis" << std::endl;
+            std::cout << "3. Grad" << std::endl;
+            std::cout << "4. Adresa" << std::endl;
+            std::cout << "5. Tip" << std::endl;
+            std::cout << "6. Datum" << std::endl;
+            std::cout << "7. Vrijeme" << std::endl;
+            std::cout << "8. Sacuvaj izmjena" << std::endl;
+            std::cin.clear();
+            fflush(stdin);
             do
             {
-                std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
-                std::cin >> k;
-            } while (stringToInt(k) > i || stringToInt(k) < 1);
-
-            event.setLocation(arrayCities[stringToInt(k) - 1], allEvents[indexAllEvents].getAddress());
-           
-            infile.close();
-        }
-        std::cin.clear();
-        fflush(stdin);
-        if(choice==4)
-            { std::cout << "Unesite adresu: " << std::endl;
-                 std::getline(std::cin, adress);
-                 event.setLocation(allEvents[indexAllEvents].getCity(), adress);
-             }
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 5)
-        {
-            std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
-
-            p = 0;
-            std::ifstream infile1("./Database/categories.txt");
-            while (std::getline(infile1, line1))
+                std::cout << "Unesite redni broj:" << std::endl;
+                std::getline(std::cin, choice1);
+                choice = stringToInt(choice1);
+            } while (choice != 1 || choice != 2 || choice != 3 || choice != 4 || choice != 5 || choice != 6 || choice != 7 || choice != 8);
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 1)
             {
-                if (line1.size() > 0)
+                std::cout << "Naziv dogadjaja: " << std::endl;
+                std::getline(std::cin, name);
+
+                event.setName(name);
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 2)
+            {
+                std::cout << "Opis dogadjaja: " << std::endl;
+                std::getline(std::cin, description);
+
+                event.setDescription(description);
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 3)
+            {
+                std::cout << "Izabrati jedan od sledecih ponudjenih gradova: " << std::endl;
+
+                std::ifstream infile("./Database/cities.txt");
+                i = 0;
+                while (std::getline(infile, line))
                 {
-                    std::cout << p + 1 << ". " << line1 << std::endl;
-                    arrayCategories[p] = line1;
-                    p++;
+
+                    std::cout << i + 1 << ". " << line << std::endl;
+                    arrayCities[i] = line;
+                    i++;
                 }
+
+                do
+                {
+                    std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
+                    std::cin >> k;
+                } while (stringToInt(k) > i || stringToInt(k) < 1);
+
+                event.setLocation(arrayCities[stringToInt(k) - 1], allEvents[indexAllEvents].getAddress());
+
+                infile.close();
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 4)
+            {
+                std::cout << "Unesite adresu: " << std::endl;
+                std::getline(std::cin, adress);
+                event.setLocation(allEvents[indexAllEvents].getCity(), adress);
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 5)
+            {
+                std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
+
+                p = 0;
+                std::ifstream infile1("./Database/categories.txt");
+                while (std::getline(infile1, line1))
+                {
+                    if (line1.size() > 0)
+                    {
+                        std::cout << p + 1 << ". " << line1 << std::endl;
+                        arrayCategories[p] = line1;
+                        p++;
+                    }
+                }
+
+                infile1.close();
+                do
+                {
+                    std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
+                    std::cin >> j;
+                } while (stringToInt(j) > p || stringToInt(j) < 1);
+                event.setType(arrayCategories[stringToInt(j) - 1]);
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 6)
+            {
+                do
+                {
+                    v = 0;
+                    day.clear();
+                    month.clear();
+                    year.clear();
+                    r.clear();
+                    q.clear();
+                    t.clear();
+                    std::cin.clear();
+                    fflush(stdin);
+                    std::cout << "Unesite datum (xx.xx.xxxx.): " << std::endl;
+                    std::getline(std::cin, date1);
+                    day.push_back(date1[0]);
+                    if (isdigit(day.back()))
+                        v++;
+                    day.push_back(date1[1]);
+                    if (isdigit(day.back()))
+                        v++;
+                    month.push_back(date1[3]);
+                    if (isdigit(month.back()))
+                        v++;
+                    month.push_back(date1[4]);
+                    if (isdigit(month.back()))
+                        v++;
+                    year.push_back(date1[6]);
+                    year.push_back(date1[7]);
+                    year.push_back(date1[8]);
+                    year.push_back(date1[9]);
+                    r.push_back(date1[2]);
+                    q.push_back(date1[5]);
+                    t.push_back(date1[10]);
+
+                } while ((date1.length() != 11) || v != 4 || (!date.setDate(stringToInt(day), stringToInt(month), stringToInt(year)) || r.compare(point) || q.compare(point) || t.compare(point)));
+
+                event.setDate(date.getDay(), date.getMonth(), date.getYear());
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 7)
+            {
+                do
+                {
+                    w = 0;
+                    hours.clear();
+                    minutes.clear();
+                    s.clear();
+                    std::cin.clear();
+                    fflush(stdin);
+                    std::cout << "Unesite vrijeme(xx:xx):" << std::endl;
+                    std::getline(std::cin, time1);
+                    hours.push_back(time1[0]);
+                    if (isdigit(hours.back()))
+                        w++;
+                    hours.push_back(time1[1]);
+                    if (isdigit(hours.back()))
+                        w++;
+                    minutes.push_back(time1[3]);
+                    if (isdigit(minutes.back()))
+                        w++;
+                    minutes.push_back(time1[4]);
+                    if (isdigit(minutes.back()))
+                        w++;
+                    s.push_back(time1[2]);
+                } while (time1.length() != 5 || w != 4 || s.compare(c) || !time.setHours(stringToInt(hours)) || !time.setMinutes(stringToInt(minutes)));
+                event.setTime(time.getHours(), time.getMinutes());
+            }
+            std::cin.clear();
+            fflush(stdin);
+            if (choice == 8)
+            {
+                int indexAllEvents = search(allEvents, eventsByCriteria, index);
+
+                eventsByCriteria.erase(eventsByCriteria.begin() + index);
+                allEvents.erase(allEvents.begin() + indexAllEvents);
+                eventsByCriteria.push_back(event);
+                allEvents.push_back(event);
+
+                file.open("./Database/events.txt", std::ifstream::out | std::ifstream::trunc); // brise sadrzaj fajla da ne dodje do ponavljanja
+
+                for (i = 0; i < allEvents.size(); i++)
+                {
+                    allEvents[i].writeInFile(allEvents[i]); // upisuje na kraj fajla
+                }
+                file.close();
             }
 
-            infile1.close();
-            do
-            {
-                std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
-                std::cin >> j;
-            } while (stringToInt(j) > p || stringToInt(j) < 1);
-            event.setType(arrayCategories[stringToInt(j) - 1]);
-
-        }
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 6)
-        {
-            do
-            {
-                v = 0;
-                day.clear(); month.clear(); year.clear(); r.clear(); q.clear(); t.clear();
-                std::cin.clear();
-                fflush(stdin);
-                std::cout << "Unesite datum (xx.xx.xxxx.): " << std::endl;
-                std::getline(std::cin, date1);
-                day.push_back(date1[0]);
-                if (isdigit(day.back()))
-                    v++;
-                day.push_back(date1[1]);
-                if (isdigit(day.back()))
-                    v++;
-                month.push_back(date1[3]);
-                if (isdigit(month.back()))
-                    v++;
-                month.push_back(date1[4]);
-                if (isdigit(month.back()))
-                    v++;
-                year.push_back(date1[6]);
-                year.push_back(date1[7]);
-                year.push_back(date1[8]);
-                year.push_back(date1[9]);
-                r.push_back(date1[2]);
-                q.push_back(date1[5]);
-                t.push_back(date1[10]);
-
-
-            } while ((date1.length() != 11) || v != 4 || (!date.setDate(stringToInt(day), stringToInt(month), stringToInt(year)) || r.compare(point) || q.compare(point) || t.compare(point)));
-
-            event.setDate(date.getDay(), date.getMonth(), date.getYear());
-        }
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 7)
-        {
-            do
-            {
-                w = 0;
-                hours.clear(); minutes.clear(); s.clear();
-                std::cin.clear();
-                fflush(stdin);
-                std::cout << "Unesite vrijeme(xx:xx):" << std::endl;
-                std::getline(std::cin, time1);
-                hours.push_back(time1[0]);
-                if (isdigit(hours.back()))
-                    w++;
-                hours.push_back(time1[1]);
-                if (isdigit(hours.back()))
-                    w++;
-                minutes.push_back(time1[3]);
-                if (isdigit(minutes.back()))
-                    w++;
-                minutes.push_back(time1[4]);
-                if (isdigit(minutes.back()))
-                    w++;
-                s.push_back(time1[2]);
-            } while (time1.length() != 5 || w != 4 || s.compare(c) || !time.setHours(stringToInt(hours)) || !time.setMinutes(stringToInt(minutes)));
-            event.setTime(time.getHours(), time.getMinutes());
-            
-        }
-        std::cin.clear();
-        fflush(stdin);
-        if (choice == 8)
-        {
-            int indexAllEvents = search(allEvents, eventsByCriteria, index);
-
-            eventsByCriteria.erase(eventsByCriteria.begin() + index);
-            allEvents.erase(allEvents.begin() + indexAllEvents);
-            eventsByCriteria.push_back(event);
-            allEvents.push_back(event);
-
-            file.open("./Database/events.txt", std::ifstream::out | std::ifstream::trunc);  // brise sadrzaj fajla da ne dodje do ponavljanja
-
-            for (i = 0; i < allEvents.size(); i++)
-            {
-               allEvents[i].writeInFile(allEvents[i]); // upisuje na kraj fajla
-
-           }
-           file.close();
-        }
-
-   
-        }while(choice!=8);
+        } while (choice != 8);
         delete[] arrayCategories;
         delete[] arrayCities;
-
     }
 }
 //Pomocna funkcija koja string pretvara u broj
-int stringToInt(std::string s) 
+int stringToInt(std::string s)
 {
     std::stringstream geek(s);
     int x = 0;
@@ -642,52 +647,52 @@ int stringToInt(std::string s)
 //Pomocna funkcija koja cijeli broj pretvara u string
 std::string NumberToString(int number)
 {
-	std::ostringstream ss;
-	ss << number;
-	return ss.str();
+    std::ostringstream ss;
+    ss << number;
+    return ss.str();
 }
 
 //Funkcija za dodavanje komentara
- void addCommentary(std::vector<Event>& allEvents, std::vector<Event>& eventsByCriteria, int index)
+void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
 {
-	std::ostringstream text;
-	std::string pom1, pom2, komentar;
-	std::cout << "Unesi komentar: ";
-	std::getline(std::cin, komentar); 
-	int i = 1;
-	int indexAllEvents = search(allEvents, eventsByCriteria, index); 
-	int temp = eventsByCriteria[index].comments.size();
-	//Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
-	if (temp <= 1)
-		pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
-	else
-	{
-		pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" + eventsByCriteria[index].comments[1];
-	}
-		while(i < (temp - 1))
-		{
-			pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
-		}
-		if (temp <= 1)
-			pom2 = pom1 + komentar;
-		else
-			pom2 = pom1 + ", " + komentar;
-		//Setovanje komentara u nizove
-		allEvents[indexAllEvents].setComment(komentar);
-		eventsByCriteria[index].setComment(komentar);
+    std::ostringstream text;
+    std::string pom1, pom2, komentar;
+    std::cout << "Unesi komentar: ";
+    std::getline(std::cin, komentar);
+    int i = 1;
+    int indexAllEvents = search(allEvents, eventsByCriteria, index);
+    int temp = eventsByCriteria[index].comments.size();
+    //Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
+    if (temp <= 1)
+        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
+    else
+    {
+        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" + eventsByCriteria[index].comments[1];
+    }
+    while (i < (temp - 1))
+    {
+        pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
+    }
+    if (temp <= 1)
+        pom2 = pom1 + komentar;
+    else
+        pom2 = pom1 + ", " + komentar;
+    //Setovanje komentara u nizove
+    allEvents[indexAllEvents].setComment(komentar);
+    eventsByCriteria[index].setComment(komentar);
 
-	//Citanje fajla u string
-	std::ifstream in_file("./Database/events.txt");
-	text << in_file.rdbuf();
-	std::string str = text.str();
-	std::string str_found = pom1;
-	std::string str_replace = pom2;
-	size_t pos = str.find(str_found);
-	str.replace(pos, std::string(str_found).length(), str_replace);
-	in_file.close();
-	//Upisivanje modifikovanog stringa u isti fajl
-	std::ofstream out_file("./Database/events.txt");
-	out_file << str;
+    //Citanje fajla u string
+    std::ifstream in_file("./Database/events.txt");
+    text << in_file.rdbuf();
+    std::string str = text.str();
+    std::string str_found = pom1;
+    std::string str_replace = pom2;
+    size_t pos = str.find(str_found);
+    str.replace(pos, std::string(str_found).length(), str_replace);
+    in_file.close();
+    //Upisivanje modifikovanog stringa u isti fajl
+    std::ofstream out_file("./Database/events.txt");
+    out_file << str;
 }
 
 void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
@@ -742,8 +747,8 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
             fflush(stdin);
             addEvent();
         }
-		
-		if (stringToInt(select) == 2) 
+
+        if (stringToInt(select) == 2)
             modificationEvent(allEvents, eventsByCriteria, index);
 
         if (stringToInt(select) == 3)
@@ -752,7 +757,8 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
         if (stringToInt(select) == 4)
             processMenu(admin_menu);
     }
-    else {
+    else
+    {
         std::string select;
         std::cout << std::endl
                   << std::endl
@@ -761,7 +767,7 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
                   << "2. Nazad" << std::endl
                   << std::endl;
 
-         do
+        do
         {
             std::cout << "Unesi broj:" << std::endl;
             std::cin >> select;
@@ -771,15 +777,13 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
         if (stringToInt(select) == 1)
         {
             std::cin.clear();
-			fflush(stdin);
-			addCommentary(allEvents, eventsByCriteria, index);
-			printEvent(allEvents, eventsByCriteria, index);
+            fflush(stdin);
+            addCommentary(allEvents, eventsByCriteria, index);
+            printEvent(allEvents, eventsByCriteria, index);
         }
 
         if (stringToInt(select) == 2)
             processMenu(client_menu);
-            
-
     }
 }
 
@@ -951,7 +955,7 @@ int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
     }
     std::ofstream fileOut("./Database/events.txt", std::ios::app);
     fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "."
-            << "|" << comments <<  "|" << std::endl;
+            << "|" << comments << "|" << std::endl;
 
     fileOut.close();
     return 1;

@@ -91,7 +91,6 @@ void categoryErase()
 	} while (stringToInt(j) > p || stringToInt(j) < 0);
 
 	int categoryIndex = stringToInt(j) - 1;
-    std::cout <<"aaaaaaaaaa"<< categoryIndex << std::endl;
 
     std::ofstream fileOut1("./Database/categories.txt");
     fileOut1 << "" ;
