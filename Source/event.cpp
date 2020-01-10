@@ -432,7 +432,7 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
     }
     if (isAdministrator == true)
     {
-        int select;
+        std::string select;
         std::cout << std::endl
                   << std::endl
                   << "Administratorske opcije sa dogadjajem:" << std::endl
@@ -447,9 +447,9 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
             std::cout << "Unesi broj:" << std::endl;
             std::cin >> select;
             std::cout << std::endl;
-        } while (select < 1 || select > 4);
+        } while (stringToInt(select) < 1 || stringToInt(select) > 4);
 
-        if (select == 1)
+        if (stringToInt(select) == 1)
         {
             std::cin.clear();
             fflush(stdin);
@@ -458,10 +458,10 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
 
         //	if (select == 2)  poziv izmjene dogadjaja
 
-        if (select == 3)
+        if (stringToInt(select) == 3)
             deleteEvent(allEvents, eventsByCriteria, index);
 
-        if (select == 4)
+        if (stringToInt(select) == 4)
             processMenu(admin_menu);
     }
 }
