@@ -31,7 +31,7 @@ void adminMenuParseAddCategory();
 void adminMenuParseAddEvent();
 void adminMenuParseEventOverview();
 
-// Functions for parsking client menu
+// Functions for parsing client menu
 void clientMenuParseQuiz();
 void clientMenuParseEventOverview();
 

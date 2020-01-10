@@ -1,5 +1,6 @@
 #include "../Include/menu.h"
 
+// Generate menu and parse input based on passed argument
 void processMenu(const std::vector <Menu_Option> &menu_option)
 {
     int menu_length;
@@ -52,12 +53,15 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
     }
 }
 
+// Clears input buffer to avoid selection errors
 void clearInputBuffer()
 {
     std::cin.clear();
     fflush(stdin);
 }
 
+
+// Operator overload for comparing two menus
 bool Menu_Option::operator==(const Menu_Option &other) const
 {
     return ((this->choice == other.choice) && 
@@ -65,6 +69,8 @@ bool Menu_Option::operator==(const Menu_Option &other) const
             (this->p_procesing_function == other.p_procesing_function));
 }
 
+// Convert integer to string
+// Used for parsing input
 std::string intToString(int n)
 {
     std::stringstream stream;
@@ -73,7 +79,9 @@ std::string intToString(int n)
     return stream.str();
 }
 
-// Functions for parsing main menu
+/* Functions for parsing main menu */
+
+// Parses login menu
 void mainMenuParseLogin()
 {
     if (!login())
@@ -88,13 +96,16 @@ void mainMenuParseLogin()
     }
 }
 
+// Parse client area option from the main menu
 void mainMenuParseClientSection()
 {
     std::cout << "\nAdventursit" << std::endl;
     processMenu(client_menu);
 }
 
-// Functions for parsing admin menu
+/* Functions for parsing admin menu */
+
+// Parse add category option from admin menu
 void adminMenuParseAddCategory()
 {
     new_category();
@@ -102,12 +113,14 @@ void adminMenuParseAddCategory()
 }
 
 
+// Parse add event option from the admin menu
 void adminMenuParseAddEvent()
 {
     addEvent();
     processMenu(admin_menu);
 }
 
+// Pare even overview option form the admin menu
 void adminMenuParseEventOverview()
 {
     eventOverviewCriteria();
@@ -115,13 +128,16 @@ void adminMenuParseEventOverview()
     processMenu(admin_menu);
 }
 
-// Functions for parsing client menu
+/* Functions for parsing client menu */
+
+// Parse quiz option from the client menu
 void clientMenuParseQuiz()
 {
     startQuiz();
     processMenu(client_menu);
 }
 
+// Parse event overview option from the client menu
 void clientMenuParseEventOverview()
 {
     eventOverviewCriteria();
