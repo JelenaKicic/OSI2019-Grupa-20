@@ -9,7 +9,8 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
     if (overviewCriteria == 3)
     {
         std::string line;
-        int p = 0, j;
+        int p = 0;
+        std::string j;
 
         std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
         std::ifstream infile1("./Database/categories.txt");
@@ -29,9 +30,9 @@ void checkOverviewCriteria(int overviewCriteria, std::vector<Event> &events, std
         {
             std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
             std::cin >> j;
-        } while (j > p || j < 0);
+        } while (stringToInt(j) > p || stringToInt(j) < 0);
 
-        category = categories[j - 1];
+        category = categories[stringToInt(j) - 1];
     }
 
     std::ifstream file("./Database/events.txt");
@@ -237,15 +238,15 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
 
     if (eventsByCriteria.size() > 0)
     {
-        unsigned int eventNumber;
+        std::string eventNumber;
         std::cout << "Za pregled jednog dogadjaja unesite broj dogadjaja" << std::endl;
         do
         {
             std::cin >> eventNumber;
-        } while (eventNumber <= 0 || eventNumber > eventsByCriteria.size());
+        } while (stringToInt(eventNumber) <= 0 || stringToInt(eventNumber) > eventsByCriteria.size());
 
         //ovdje umjesto jednog dogadjaja pozovi samo to za brisanje
-        printEvent(allEvents, eventsByCriteria, eventNumber - 1);
+        printEvent(allEvents, eventsByCriteria, stringToInt(eventNumber) - 1);
     }
     else
     {
@@ -260,7 +261,7 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
 //izbor kriterijuma pretrage i nacina na koji ce dogadjaji biti sortirani
 void eventOverviewCriteria()
 {
-    int overviewCriteria = 0, sortCriteria = 0;
+    std::string overviewCriteria, sortCriteria;
 
     std::cout << "Sortiraj dogadjaje po:" << std::endl
               << "1. Nazivu" << std::endl
@@ -273,7 +274,7 @@ void eventOverviewCriteria()
         std::cout << "Unesi broj:" << std::endl;
         std::cin >> sortCriteria;
         std::cout << std::endl;
-    } while (sortCriteria < 1 || sortCriteria > 3);
+    } while (stringToInt(sortCriteria) < 1 || stringToInt(sortCriteria) > 3);
 
     std::cout << "Izaberite kritrijum pregleda dogadjaja:" << std::endl
               << "1. Pregled danasnjih dogadjaja" << std::endl
@@ -288,9 +289,9 @@ void eventOverviewCriteria()
         std::cout << "Unesi broj:" << std::endl;
         std::cin >> overviewCriteria;
         std::cout << std::endl;
-    } while (overviewCriteria < 1 || overviewCriteria > 5);
+    } while (stringToInt(overviewCriteria) < 1 || stringToInt(overviewCriteria) > 5);
 
-    geteventsByOrder(overviewCriteria, sortCriteria);
+    geteventsByOrder(stringToInt(overviewCriteria), stringToInt(sortCriteria));
 }
 
 Event::Event()
@@ -528,15 +529,19 @@ void addEvent() //dodavanje dogadjaja
     }
 
     infile1.close();
+
     do
     {
         std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
         std::cin >> j;
     } while (stringToInt(j) > p || stringToInt(j) < 0);
+
     array[2] = arrayCategories[stringToInt(j) - 1];
+
     do
     {
         v = 0;
+
         day.clear();
         month.clear();
         year.clear();
@@ -545,21 +550,27 @@ void addEvent() //dodavanje dogadjaja
         t.clear();
         std::cin.clear();
         fflush(stdin);
+
         std::cout << "Unesite datum (xx.xx.xxxx.): " << std::endl;
         std::getline(std::cin, date1);
         day.push_back(date1[0]);
+
         if (isdigit(day.back()))
             v++;
         day.push_back(date1[1]);
+
         if (isdigit(day.back()))
             v++;
         month.push_back(date1[3]);
+
         if (isdigit(month.back()))
             v++;
         month.push_back(date1[4]);
+
         if (isdigit(month.back()))
             v++;
         year.push_back(date1[6]);
+
         year.push_back(date1[7]);
         year.push_back(date1[8]);
         year.push_back(date1[9]);
@@ -568,29 +579,37 @@ void addEvent() //dodavanje dogadjaja
         t.push_back(date1[10]);
 
     } while ((date1.length() != 11) || v != 4 || (!date->setDate(stringToInt(day), stringToInt(month), stringToInt(year)) || r.compare(point) || q.compare(point) || t.compare(point)));
+
     do
     {
         w = 0;
+
         hours.clear();
         minutes.clear();
         s.clear();
         std::cin.clear();
         fflush(stdin);
+
         std::cout << "Unesite vrijeme(xx:xx):" << std::endl;
         std::getline(std::cin, time1);
+
         hours.push_back(time1[0]);
         if (isdigit(hours.back()))
             w++;
         hours.push_back(time1[1]);
+
         if (isdigit(hours.back()))
             w++;
         minutes.push_back(time1[3]);
+
         if (isdigit(minutes.back()))
             w++;
         minutes.push_back(time1[4]);
+
         if (isdigit(minutes.back()))
             w++;
         s.push_back(time1[2]);
+
     } while (time1.length() != 5 || w != 4 || s.compare(c) || !time->setHours(stringToInt(hours)) || !time->setMinutes(stringToInt(minutes)));
 
     Event newEvent = Event(array[0], array[1], location->getCity(), location->getAddress(), array[2], date->getDay(), date->getMonth(), date->getYear(), time->getHours(), time->getMinutes());
@@ -601,6 +620,7 @@ void addEvent() //dodavanje dogadjaja
     delete[] array;
     delete[] arrayCategories;
     delete[] arrayCities;
+
     newEvent.writeInFile(newEvent);
 }
 
@@ -609,6 +629,7 @@ int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
     std::ofstream fileOut("./Database/events.txt", std::ios::app);
     fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "."
             << "| |" << std::endl;
+
     fileOut.close();
     return 1;
 }
