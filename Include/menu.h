@@ -48,7 +48,7 @@ const std::vector<Menu_Option> admin_menu =
     {
         {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
         {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
-        {"3", "Pregeld dogadjaja", adminMenuParseEventOverview},
+        {"3", "Pregled dogadjaja", adminMenuParseEventOverview},
         {"4", "Nazad", parseMainMenu},
 };
 
