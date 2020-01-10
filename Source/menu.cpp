@@ -76,6 +76,7 @@ std::string intToString(int n)
 // Function for parsing main menu
 void parseMainMenu()
 {
+    isAdministrator = false;
     processMenu(main_menu);
 }
 
