@@ -782,7 +782,7 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
         }
 
         if (stringToInt(select) == 2)
-            processMenu(admin_menu);
+            processMenu(client_menu);
 
     }
 }
