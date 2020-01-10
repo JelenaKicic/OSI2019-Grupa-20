@@ -1,12 +1,13 @@
+#pragma once
 #include <string>
 
 class Location
 {
-private:
+  private:
 	std::string city;
 	std::string adress;
 
-public:
+  public:
 	Location();
 	Location(std::string, std::string);
 	void printLocation();

@@ -1,2 +1,1 @@
-Imet|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|| |
-Ime|Ovaj dogadjaj je zbavan.|Banja Luka|Majke Jugovica 17|Koncert|12:30|1.2.2020.|| |
+imee|opis|Kalinovik|adress|Izlozba|14:15|13.9.2021.|JADGAJFGAJalhlghaghafhalfaSuba je konjina |

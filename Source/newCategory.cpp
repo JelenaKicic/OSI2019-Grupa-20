@@ -1,7 +1,7 @@
 #include "../Include/newCategory.h"
 #include <iostream>
 #include <fstream>
-
+#include <vector>
 int new_category()
 {
     std::string input, temp, choice;
@@ -57,4 +57,54 @@ int new_category()
         }
     } while (choice != "DA" && choice != "NE");
     return 0;
+}
+
+
+void categoryErase()
+{
+	std::string category;
+	std::vector<std::string> categories;
+
+
+	std::string line;
+	int p = 0;
+	std::string j;
+
+	std::cout << "Izaberite jednu od ponudjenih kategorija: " << std::endl;
+	std::ifstream infile1("./Database/categories.txt");
+
+	while (std::getline(infile1, line))
+	{
+		if (line.size() > 0)
+		{
+			std::cout << p + 1 << ". " << line << std::endl;
+			categories.push_back(line);
+			p++;
+		}
+	}
+
+	infile1.close();
+	do
+	{
+		std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
+		std::cin >> j;
+	} while (stringToInt(j) > p || stringToInt(j) < 0);
+
+	int categoryIndex = stringToInt(j) - 1;
+    std::cout <<"aaaaaaaaaa"<< categoryIndex << std::endl;
+
+    std::ofstream fileOut1("./Database/categories.txt");
+    fileOut1 << "" ;
+
+    std::ofstream fileOut("./Database/categories.txt", std::ios::app);
+	for (int i = 0; i < p; i++)
+	{
+		if (i != categoryIndex)
+		{
+			fileOut << categories[i] << std::endl;
+
+		}
+
+	}
+
 }

@@ -1,33 +1,36 @@
 #include "../Include/quiz.h"
+#include "../Include/event.h"
 
 void startQuiz()
 {
     std::vector<Quiz> quiz;
     readQuizData(quiz);
 
-    int cityNum;
-    std::cout << "Izaberi grad" << std::endl;
+    std::string cityNum;
+    std::cout << std::endl
+              << "Izaberi grad" << std::endl;
     for (int i = 0; i < 4; i++)
     {
         std::cout << i + 1 << " " << quiz[i].getCity() << std::endl;
     }
+
     do
     {
         std::cout << "Unesi broj" << std::endl;
         std::cin >> cityNum;
         std::cout << std::endl;
-    } while (cityNum < 1 || cityNum > 4);
+    } while (stringToInt(cityNum) < 1 || stringToInt(cityNum) > 4);
 
     for (int i = 0; i < 10; i++)
     {
-        quiz[cityNum - 1].printQuestion(i);
-        quiz[cityNum - 1].answerQuestion(i);
+        quiz[stringToInt(cityNum) - 1].printQuestion(i);
+        quiz[stringToInt(cityNum) - 1].answerQuestion(i);
     }
 
     int correct = 0;
     for (int i = 0; i < 10; i++)
     {
-        quiz[cityNum - 1].printAll(i, correct);
+        quiz[stringToInt(cityNum) - 1].printAll(i, correct);
     }
 
     if (correct == 0)
@@ -37,7 +40,8 @@ void startQuiz()
         std::cout << "Odgovorili ste tacno na jedno pitanje.";
 
     else
-        std::cout << "Odgovorili ste tacno na " << correct << " pitanja od " << 10 << ".";
+        std::cout << "Odgovorili ste tacno na " << correct << " pitanja od " << 10 << "." << std::endl
+                  << std::endl;
 }
 
 //funkzija za konverziju stringa povucenog iz datoteke u bool tip
@@ -107,10 +111,13 @@ void Quiz::printQuestion(int index)
 void Quiz::printAll(int index, int &correct)
 {
     std::cout << array[index].getQuestion() << std::endl;
+
     std::cout << "Tacan odgovor je: ";
     array[index].printCorrect();
+
     std::cout << "Odgovorili ste" << (array[index].getAnswered() ? " tacno." : " netacno.") << std::endl
               << std::endl;
+
     std::cout << array[index].getDescription() << std::endl
               << std::endl
               << std::endl;
@@ -122,12 +129,16 @@ void Quiz::printAll(int index, int &correct)
 // odgovor na pitanje i ispitivanje tacnosti odgovora
 void Quiz::answerQuestion(int index)
 {
-    int answer;
-    std::cout << "Unesi broj:" << std::endl;
-    std::cin >> answer;
-    std::cout << std::endl;
+    std::string answer;
 
-    array[index].setAnswered(array[index].getCorrect(answer - 1));
+    do
+    {
+        std::cout << "Unesi broj:" << std::endl;
+        std::cin >> answer;
+        std::cout << std::endl;
+    } while (stringToInt(answer) < 1 || stringToInt(answer) > 3);
+
+    array[index].setAnswered(array[index].getCorrect(stringToInt(answer) - 1));
 }
 
 //ispis tacnog odgovora, pri ispisu kviza

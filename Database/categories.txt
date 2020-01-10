@@ -1,7 +1,4 @@
-Koncert
-
 Izlozba
-
 Predavanje
-
-Parada
+Pjevanje
+Ktegorija

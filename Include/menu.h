@@ -19,39 +19,44 @@ struct Menu_Option
 };
 
 void clearInputBuffer();
-void processMenu(const std::vector <Menu_Option> &);
+void processMenu(const std::vector<Menu_Option> &);
 std::string intToString(int);
 
 // Functions for parsing main menu
+void parseMainMenu();
 void mainMenuParseLogin();
 void mainMenuParseClientSection();
 
 // Functions for parsing admin menu
 void adminMenuParseAddCategory();
+void adminMenuParseDeleteCategory();
 void adminMenuParseAddEvent();
 void adminMenuParseEventOverview();
 
-// Functions for parsking client menu
+// Functions for parsing client menu
+void parseClientMenu();
 void clientMenuParseQuiz();
 void clientMenuParseEventOverview();
 
-
 // Menus
-const std::vector <Menu_Option> main_menu = 
+const std::vector<Menu_Option> main_menu =
     {
-      {"1", "Prijava na sistem",  mainMenuParseLogin},
-      {"2", "Korisnicki dio", mainMenuParseClientSection},
-    };
+        {"1", "Prijava na sistem", mainMenuParseLogin},
+        {"2", "Korisnicki dio", mainMenuParseClientSection},
+};
 
-const std::vector <Menu_Option> admin_menu =
+const std::vector<Menu_Option> admin_menu =
     {
-      {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
-      {"2", "Dodavanje dogadjaja", adminMenuParseAddEvent},
-      {"3", "Pregeld dogadjaja", adminMenuParseEventOverview},
-    };
+        {"1", "Dodavanje kategorije", adminMenuParseAddCategory},
+        {"2", "Brisanje kategorije", adminMenuParseDeleteCategory},
+        {"3", "Dodavanje dogadjaja", adminMenuParseAddEvent},
+        {"4", "Pregled dogadjaja", adminMenuParseEventOverview},
+        {"5", "Nazad", parseMainMenu},
+};
 
-const std::vector <Menu_Option> client_menu =
+const std::vector<Menu_Option> client_menu =
     {
-      {"1", "Pregled dogadjaja", clientMenuParseEventOverview},
-      {"2", "Kviz", clientMenuParseQuiz},
-    };
+        {"1", "Pregled dogadjaja", clientMenuParseEventOverview},
+        {"2", "Kviz", clientMenuParseQuiz},
+        {"3", "Nazad", parseMainMenu},
+};
