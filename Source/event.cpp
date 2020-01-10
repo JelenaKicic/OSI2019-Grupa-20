@@ -361,7 +361,7 @@ int search(std::vector<Event> &first, std::vector<Event> &second, int index) //t
         int tmpY = second[index].getYear();
         int tmpMi = second[index].getMinutes();
         int tmpH = second[index].getHours();
-        for (int i = 0; i < first.size(); i++)
+        for (unsigned int i = 0; i < first.size(); i++)
         {
             if (tmpN == first[i].getName() && tmpD == first[i].getDay() && tmpM == first[i].getMonth() && tmpY == first[i].getYear() &&
                 tmpMi == first[i].getMinutes() && tmpH == first[i].getHours())
@@ -437,7 +437,7 @@ void modificationEvent(std::vector<Event> &allEvents, std::vector<Event> &events
         event.setType(allEvents[indexAllEvents].getType());
         event.setDate(allEvents[indexAllEvents].date.getDay(), allEvents[indexAllEvents].date.getMonth(), allEvents[indexAllEvents].date.getYear());
         event.setTime(allEvents[indexAllEvents].time.getHours(), allEvents[indexAllEvents].time.getMinutes());
-        for (int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
+        for (unsigned int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
         {
             event.comments.push_back(allEvents[indexAllEvents].comments[i]);
         }
@@ -662,7 +662,7 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
 
     int i = 0;
     int indexAllEvents = search(allEvents, eventsByCriteria, index);
-    int temp = eventsByCriteria[index].comments.size();
+    unsigned int temp = eventsByCriteria[index].comments.size();
 
     //Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
     if (temp <= 1)
@@ -734,7 +734,7 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
             std::cout << "  Vrijeme:    " << allEvents[indexAllEvents].time << std::endl;
             std::cout << "  Komentari:  " << std::endl;
 
-            for (int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
+            for (unsigned int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
             {
                 std::cout << "             " << allEvents[indexAllEvents].comments[i] << std::endl;
             }
@@ -969,7 +969,7 @@ int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
 {
     std::string comments = "";
 
-    for (int i = 0; i < newEvent.comments.size(); i++)
+    for (unsigned int i = 0; i < newEvent.comments.size(); i++)
     {
         comments += newEvent.comments[i] + ",";
     }
