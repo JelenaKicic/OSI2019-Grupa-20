@@ -239,9 +239,9 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
     if (eventsByCriteria.size() > 0)
     {
         std::string eventNumber;
-        std::cout << "Za pregled jednog dogadjaja unesite broj dogadjaja" << std::endl;
         do
         {
+            std::cout << "Za pregled jednog dogadjaja unesite broj dogadjaja" << std::endl;
             std::cin >> eventNumber;
         } while (stringToInt(eventNumber) <= 0 || stringToInt(eventNumber) > eventsByCriteria.size());
 
@@ -660,7 +660,7 @@ void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCr
     std::cout << "Unesi komentar: ";
     std::getline(std::cin, komentar);
 
-    int i = 0;
+    unsigned int i = 0;
     int indexAllEvents = search(allEvents, eventsByCriteria, index);
     unsigned int temp = eventsByCriteria[index].comments.size();
 
