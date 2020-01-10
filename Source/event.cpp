@@ -527,6 +527,33 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
         if (stringToInt(select) == 4)
             processMenu(admin_menu);
     }
+    else {
+        std::string select;
+        std::cout << std::endl
+                  << std::endl
+                  << "Korisnicke opcije sa dogadjajem:" << std::endl
+                  << "1. Dodaj komentar" << std::endl
+                  << "2. Nazad" << std::endl
+                  << std::endl;
+
+         do
+        {
+            std::cout << "Unesi broj:" << std::endl;
+            std::cin >> select;
+            std::cout << std::endl;
+        } while (stringToInt(select) < 1 || stringToInt(select) > 2);
+
+        if (stringToInt(select) == 1)
+        {
+            std::cin.clear();
+            fflush(stdin);
+            addCommentary(allEvents, eventsByCriteria, index);
+        }
+
+        if (stringToInt(select) == 2)
+            processMenu(admin_menu);
+
+    }
 }
 
 void addEvent() //dodavanje dogadjaja
