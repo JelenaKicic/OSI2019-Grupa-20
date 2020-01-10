@@ -76,6 +76,7 @@ std::string intToString(int n)
 // Function for parsing main menu
 void parseMainMenu()
 {
+    isAdministrator = false;
     processMenu(main_menu);
 }
 
@@ -115,6 +116,11 @@ void adminMenuParseAddCategory()
     processMenu(admin_menu);
 }
 
+void adminMenuParseDeleteCategory()
+{
+    categoryErase();
+    processMenu(admin_menu);
+}
 // Parse add event option from the admin menu
 void adminMenuParseAddEvent()
 {

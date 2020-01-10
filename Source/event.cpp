@@ -437,6 +437,11 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
         event.setType(allEvents[indexAllEvents].getType());
         event.setDate(allEvents[indexAllEvents].date.getDay(), allEvents[indexAllEvents].date.getMonth(), allEvents[indexAllEvents].date.getYear());
         event.setTime(allEvents[indexAllEvents].time.getHours(), allEvents[indexAllEvents].time.getMinutes());
+        for (int i = 0; i < allEvents[indexAllEvents].comments.size(); i++)
+        {
+            event.comments.push_back(allEvents[indexAllEvents].comments[i]);
+        }
+        
         do{
         std::cout << "Izaberite zeljeno polje: " << std::endl;
         std::cout << "1. Naziv" << std::endl;
@@ -460,8 +465,6 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
         {
             std::cout << "Naziv dogadjaja: " << std::endl;
             std::getline(std::cin, name);
-
-            std::cout << name << std::endl;
 
             event.setName(name);
         }
@@ -493,7 +496,8 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
             {
                 std::cout << "Unesite redni broj zeljenog grada: " << std::endl;
                 std::cin >> k;
-            } while (stringToInt(k) > i || stringToInt(k) < 0);
+            } while (stringToInt(k) > i || stringToInt(k) < 1);
+
             event.setLocation(arrayCities[stringToInt(k) - 1], allEvents[indexAllEvents].getAddress());
            
             infile.close();
@@ -528,7 +532,7 @@ void modificationEvent(std::vector<Event>& allEvents, std::vector<Event>& events
             {
                 std::cout << "Unesite redni broj zeljene kategorije: " << std::endl;
                 std::cin >> j;
-            } while (stringToInt(j) > p || stringToInt(j) < 0);
+            } while (stringToInt(j) > p || stringToInt(j) < 1);
             event.setType(arrayCategories[stringToInt(j) - 1]);
 
         }
@@ -638,63 +642,52 @@ int stringToInt(std::string s)
 //Pomocna funkcija koja cijeli broj pretvara u string
 std::string NumberToString(int number)
 {
-    std::ostringstream ss;
-
-    ss << number;
-    return ss.str();
+	std::ostringstream ss;
+	ss << number;
+	return ss.str();
 }
 
 //Funkcija za dodavanje komentara
-void addCommentary(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
+ void addCommentary(std::vector<Event>& allEvents, std::vector<Event>& eventsByCriteria, int index)
 {
-    std::ostringstream text;
-    std::string pom1, pom2, komentar;
-    std::cout << "Unesi komentar: ";
+	std::ostringstream text;
+	std::string pom1, pom2, komentar;
+	std::cout << "Unesi komentar: ";
+	std::getline(std::cin, komentar); 
+	int i = 1;
+	int indexAllEvents = search(allEvents, eventsByCriteria, index); 
+	int temp = eventsByCriteria[index].comments.size();
+	//Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
+	if (temp <= 1)
+		pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
+	else
+	{
+		pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" + eventsByCriteria[index].comments[1];
+	}
+		while(i < (temp - 1))
+		{
+			pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
+		}
+		if (temp <= 1)
+			pom2 = pom1 + komentar;
+		else
+			pom2 = pom1 + ", " + komentar;
+		//Setovanje komentara u nizove
+		allEvents[indexAllEvents].setComment(komentar);
+		eventsByCriteria[index].setComment(komentar);
 
-    std::getline(std::cin, komentar);
-    komentar += ",";
-
-    int i = 1;
-    int indexAllEvents = search(allEvents, eventsByCriteria, index);
-    int temp = eventsByCriteria[index].comments.size();
-
-    //Provjera da li dogadjaj sadrzi barem jedan komentar ili ne
-    if (temp <= 1)
-        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|";
-    else
-    {
-        pom1 = eventsByCriteria[index].getAddress() + "|" + eventsByCriteria[index].getType() + "|" + NumberToString(eventsByCriteria[index].getHours()) + ":" + NumberToString(eventsByCriteria[index].getMinutes()) + "|" + NumberToString(eventsByCriteria[index].getDay()) + "." + NumberToString(eventsByCriteria[index].date.getMonth()) + "." + NumberToString(eventsByCriteria[index].date.getYear()) + ".|" + eventsByCriteria[index].comments[1];
-    }
-
-    while (i < (temp - 1))
-    {
-        pom1 = pom1 + ", " + eventsByCriteria[index].comments[++i];
-    }
-
-    if (temp <= 1)
-        pom2 = pom1 + komentar;
-    else
-        pom2 = pom1 + ", " + komentar;
-
-    //Setovanje komentara u nizove
-    allEvents[indexAllEvents].setComment(komentar);
-    eventsByCriteria[index].setComment(komentar);
-
-    //Citanje fajla u string
-    std::ifstream in_file("./Database/events.txt");
-    text << in_file.rdbuf();
-
-    std::string str = text.str();
-    std::string str_found = pom1;
-    std::string str_replace = pom2;
-
-    size_t pos = str.find(str_found);
-    str.replace(pos, std::string(str_found).length(), str_replace);
-    in_file.close();
-
-    //Upisivanje modifikovanog stringa u isti fajl
-    std::ofstream out_file("./Database/events.txt");
-    out_file << str;
+	//Citanje fajla u string
+	std::ifstream in_file("./Database/events.txt");
+	text << in_file.rdbuf();
+	std::string str = text.str();
+	std::string str_found = pom1;
+	std::string str_replace = pom2;
+	size_t pos = str.find(str_found);
+	str.replace(pos, std::string(str_found).length(), str_replace);
+	in_file.close();
+	//Upisivanje modifikovanog stringa u isti fajl
+	std::ofstream out_file("./Database/events.txt");
+	out_file << str;
 }
 
 void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCriteria, int index)
@@ -778,12 +771,14 @@ void printEvent(std::vector<Event> &allEvents, std::vector<Event> &eventsByCrite
         if (stringToInt(select) == 1)
         {
             std::cin.clear();
-            fflush(stdin);
-            addCommentary(allEvents, eventsByCriteria, index);
+			fflush(stdin);
+			addCommentary(allEvents, eventsByCriteria, index);
+			printEvent(allEvents, eventsByCriteria, index);
         }
 
         if (stringToInt(select) == 2)
             processMenu(client_menu);
+            
 
     }
 }
@@ -948,9 +943,15 @@ void addEvent() //dodavanje dogadjaja
 
 int Event::writeInFile(Event &newEvent) //upis dogadjaja na kraj fajla
 {
+    std::string comments = "";
+
+    for (int i = 0; i < newEvent.comments.size(); i++)
+    {
+        comments += newEvent.comments[i] + ",";
+    }
     std::ofstream fileOut("./Database/events.txt", std::ios::app);
     fileOut << newEvent.name << "|" << newEvent.description << "|" << newEvent.location.getCity() << "|" << newEvent.location.getAddress() << "|" << newEvent.type << "|" << newEvent.time.getHours() << ":" << newEvent.time.getMinutes() << "|" << newEvent.date.getDay() << "." << newEvent.date.getMonth() << "." << newEvent.date.getYear() << "."
-            << "| |" << std::endl;
+            << "|" << comments <<  "|" << std::endl;
 
     fileOut.close();
     return 1;

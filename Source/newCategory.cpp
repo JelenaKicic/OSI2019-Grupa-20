@@ -91,13 +91,17 @@ void categoryErase()
 	} while (stringToInt(j) > p || stringToInt(j) < 0);
 
 	int categoryIndex = stringToInt(j) - 1;
+    std::cout <<"aaaaaaaaaa"<< categoryIndex << std::endl;
 
-	std::ofstream outfile1(".Database/categories.txt");
+    std::ofstream fileOut1("./Database/categories.txt");
+    fileOut1 << "" ;
+
+    std::ofstream fileOut("./Database/categories.txt", std::ios::app);
 	for (int i = 0; i < p; i++)
 	{
 		if (i != categoryIndex)
 		{
-			outfile1 << categories[i] << std::endl;
+			fileOut << categories[i] << std::endl;
 
 		}
 
