@@ -1,12 +1,13 @@
 #include "../Include/menu.h"
 
 // Generate menu and parse input based on passed argument
-void processMenu(const std::vector <Menu_Option> &menu_option)
+void processMenu(const std::vector<Menu_Option> &menu_option)
 {
     int menu_length;
     int invalid_choice = 0;
     menu_length = menu_option.size();
 
+    std::cout << std::endl;
     for (int i = 0; i < menu_length; ++i)
     {
         std::cout << menu_option[i].choice << ". " << menu_option[i].selection_text << std::endl;
@@ -16,12 +17,14 @@ void processMenu(const std::vector <Menu_Option> &menu_option)
 
     std::string choice;
     clearInputBuffer();
-    
-    if(!std::getline(std::cin, choice))
+
+    std::cout << std::endl;
+    if (!std::getline(std::cin, choice))
     {
         processMenu(menu_option);
     }
 
+    std::cout << std::endl;
     for (int i = 0; i < menu_length; ++i)
     {
         clearInputBuffer();
@@ -50,12 +53,11 @@ void clearInputBuffer()
     fflush(stdin);
 }
 
-
 // Operator overload for comparing two menus
 bool Menu_Option::operator==(const Menu_Option &other) const
 {
-    return ((this->choice == other.choice) && 
-            (this->selection_text == other.selection_text) && 
+    return ((this->choice == other.choice) &&
+            (this->selection_text == other.selection_text) &&
             (this->p_procesing_function == other.p_procesing_function));
 }
 
@@ -82,12 +84,15 @@ void mainMenuParseLogin()
 {
     if (!login())
     {
-        std::cout << "\n\nDashboard" << std::endl;
+        std::cout << std::endl
+                  << std::endl
+                  << "Dashboard" << std::endl;
         processMenu(admin_menu);
     }
     else
     {
-        std::cout << "\n" << std::endl;
+        std::cout << std::endl
+                  << std::endl;
         processMenu(main_menu);
     }
 }
@@ -95,7 +100,9 @@ void mainMenuParseLogin()
 // Parse client area option from the main menu
 void mainMenuParseClientSection()
 {
-    std::cout << "\nAdventursit" << std::endl;
+    std::cout << std::endl
+              << "Adventurist" << std::endl
+              << std::endl;
     processMenu(client_menu);
 }
 
@@ -119,7 +126,7 @@ void adminMenuParseAddEvent()
 void adminMenuParseEventOverview()
 {
     eventOverviewCriteria();
-    std::cout << "\n";
+    std::cout << std::endl;
     processMenu(admin_menu);
 }
 
@@ -142,6 +149,6 @@ void clientMenuParseQuiz()
 void clientMenuParseEventOverview()
 {
     eventOverviewCriteria();
-    std::cout << "\n";
+    std::cout << std::endl;
     processMenu(client_menu);
 }
