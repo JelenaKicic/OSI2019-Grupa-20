@@ -3,7 +3,8 @@
 #include <fstream>
 #include <bits/stdc++.h>
 #include <conio.h>
-bool isAdministrator = false;
+bool isAdministrator = false;   
+
 int login()
 {
 	
