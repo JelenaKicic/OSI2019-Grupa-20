@@ -235,7 +235,7 @@ void geteventsByOrder(int overviewCriteria, int sortCriteria)
         eventsByCriteria[i].printEventLine();
     }
 
-    int eventNumber;
+    unsigned int eventNumber;
     std::cout << "Za pregled jednog dogadjaja unesite broj dogadjaja" << std::endl;
     do
     {
